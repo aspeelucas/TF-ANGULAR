@@ -1,0 +1,41 @@
+.formCointainerUsers{
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    
+    
+}   
+
+.formCointainerUsers h1{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+.formUsers{
+    
+    width: 80%;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+}
+.buttonDialog {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+}
+
+.buttonDialog button{
+    color: white;
+    background-color: #6930C3;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

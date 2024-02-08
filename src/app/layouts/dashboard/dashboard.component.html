@@ -1,0 +1,59 @@
+<mat-drawer-container class="dashboardCointainer" autosize>
+    <mat-drawer #drawer class="sidenavContainer" mode="side">
+      <ul>
+        <li>
+          <mat-icon
+            aria-hidden="false"
+            aria-label="Example home icon"
+            fontIcon="home"
+          ></mat-icon
+          ><a routerLink="home" routerLinkActive="active">Inicio</a>
+        </li>
+        <li>
+          <mat-icon
+            aria-hidden="false"
+            aria-label="Example home icon"
+            fontIcon="group_add"
+          ></mat-icon
+          ><a routerLink="users" routerLinkActive="active">Usuarios</a>
+        </li>
+        <li>
+          <mat-icon
+            aria-hidden="false"
+            aria-label="Example home icon"
+            fontIcon="class"
+          ></mat-icon
+          ><a routerLink="courses" routerLinkActive="active">Cursos</a>
+        </li>
+        <li>
+          <mat-icon
+            aria-hidden="false"
+            aria-label="Example home icon"
+            fontIcon="exit_to_app"
+          ></mat-icon
+          ><a  routerLinkActive="active">Cerrar sesion</a>
+        </li>
+      </ul>
+  
+      <!--  -->
+    </mat-drawer>
+    <div class="">
+      <mat-toolbar color="primary" class="navbarContainer">
+        <button
+          mat-icon-button
+          (click)="drawer.toggle()"
+          class="example-icon"
+          aria-label="Example icon-button with menu icon"
+        >
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>Instituto de ingles Forum</span>
+      </mat-toolbar>
+    </div>
+    <div class="tableContainer">
+     
+ <!-- RUTAS -->
+ <app-users></app-users>
+
+    </div>
+  </mat-drawer-container>

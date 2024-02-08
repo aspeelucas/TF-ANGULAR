@@ -1,0 +1,59 @@
+<div class="formCointainerUsers">
+    <h1 mat-dialog-title>Agregar Usuario</h1>
+    <div class="formUsers">
+      <form [formGroup]="userForm">
+        <mat-form-field>
+          <mat-label>Nombre</mat-label>
+          <input type="text" formControlName="firstName" matInput placeholder="Nombre" type="text" required/>
+          <mat-error>
+            <span *ngIf="userForm.get('firstName')?.hasError('required')"
+              >El nombre es requerido</span
+            >
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Apellido</mat-label>
+          <input type="text" formControlName="lastName" matInput placeholder="Apellido" type="text" required/>
+          <mat-error>
+            <span *ngIf="userForm.get('lastName')?.hasError('required')"
+              >El apellido es requerido</span
+            >
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input formControlName="email" matInput placeholder="Email" type="email"required />
+          <mat-error>
+            <span *ngIf="userForm.get('email')?.hasError('required')"
+              >El email es requerido</span
+            >
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Telefono</mat-label>
+          <input formControlName="phone" matInput placeholder="Telefono" type="number"required />
+          <mat-error>
+            <span *ngIf="userForm.get('phone')?.hasError('required')"
+              >El telefono es requerido</span
+            >
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Rol</mat-label>
+          <mat-select formControlName="role" required>
+            <mat-option value="Admin">Admin</mat-option>
+            <mat-option value="Estudiante">Estudiante</mat-option>
+          </mat-select>
+          <mat-error>
+            <span *ngIf="userForm.get('role')?.hasError('required')"
+              >El rol es requerido</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </form>
+    </div>
+    <div class="buttonDialog" mat-dialog-actions>
+      <button mat-flat-button  (click)="onNoClick()">Cancelar</button>
+      <button mat-flat-button (click)="onSave()">Guardar</button>
+    </div>
+  </div>
