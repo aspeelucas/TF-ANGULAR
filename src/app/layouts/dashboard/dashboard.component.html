@@ -31,7 +31,7 @@
             aria-label="Example home icon"
             fontIcon="exit_to_app"
           ></mat-icon
-          ><a  routerLinkActive="active">Cerrar sesion</a>
+          ><a  (click)="logout()">Cerrar sesion</a>
         </li>
       </ul>
   
@@ -53,7 +53,7 @@
     <div class="tableContainer">
      
  <!-- RUTAS -->
- <app-users></app-users>
+<router-outlet></router-outlet>
 
     </div>
   </mat-drawer-container>

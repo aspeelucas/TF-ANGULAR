@@ -1,2 +1,33 @@
-<p>home works!</p>
-<button mat-flat-button color="accent">Accent</button>
+<!-- <p>home works!</p>
+<button mat-flat-button color="accent">Accent</button> -->
+<div class="container">
+  <div class="homeContainer">
+    <h1>Bienvenidos al gestor de datos del instituto Forum</h1>
+    <p>
+      En este sistema podras gestionar los datos de los usuarios,inscripciones,
+      cursos y alumnos del instituto Forum.
+      Para comenzar selecciona una de las opciones:
+    </p>
+    <div class="buttonContainer">
+      <div class="contendorBotones1">
+        <button routerLink="/dashboard/users" class="botonn uno">
+          <mat-icon>group_add</mat-icon>
+          <span>Usuarios</span>
+        </button>
+      </div>
+      <div class="contendorBotones1">
+        <button routerLink="/dashboard/courses" class="botonn uno">
+          <mat-icon>class</mat-icon>
+          <span>Cursos</span>
+        </button>
+      </div>
+
+      <div class="contendorBotones1">
+        <button class="botonn uno">
+          <mat-icon> rate_review</mat-icon>
+          <span>Inscripciones</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -6,6 +6,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { DashboardModule } from './layouts/dashboard/dashboard.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatNativeDateModule } from '@angular/material/core';
+import { HomeModule } from './layouts/dashboard/pages/home/home.module';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     DashboardModule,
     MatProgressSpinnerModule,
     MatNativeDateModule,
+    HomeModule
   ],
   providers: [
     provideAnimationsAsync()

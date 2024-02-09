@@ -1,0 +1,92 @@
+<div class="formCointainerCourses">
+  <h1 mat-dialog-title>Agregar Curso</h1>
+  <div class="formCourses" mat-dialog-content>
+    <form [formGroup]="courseForm">
+      <!-- <mat-form-field>
+            <mat-label>Nombre del curso</mat-label>
+            <input
+              formControlName="nameCourse"
+              matInput
+              placeholder="Nombre del curso"
+              required
+            />
+          </mat-form-field> -->
+
+      <mat-form-field>
+        <mat-label>Cursos</mat-label>
+        <mat-select formControlName="nameCourse" required>
+          <mat-option value="Ingles Basico">Ingles Basico</mat-option>
+          <mat-option value="Ingles Intermedio">Ingles Intermedio</mat-option>
+          <mat-option value="Ingles Avanzado">Ingles Avanzado</mat-option>
+        </mat-select>
+        <mat-error>
+          <span *ngIf="courseForm.get('nameCourse')?.hasError('required')"
+            >El curso es requerido</span
+          >
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Fecha de inicio</mat-label>
+        <input
+          required
+          matInput
+          formControlName="start"
+          [matDatepicker]="fechaComienzo"
+        />
+        <mat-error>
+          <span *ngIf="courseForm.get('start')?.hasError('required')"
+            >La Fecha de incio es requerida</span
+          >
+        </mat-error>
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="fechaComienzo"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #fechaComienzo></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Finalizacion</mat-label>
+        <input
+          required
+          matInput
+          formControlName="end"
+          [matDatepicker]="fechaFinalizacion"
+        />
+        <mat-error>
+          <span *ngIf="courseForm.get('end')?.hasError('required')"
+            >La Fecha de Finalizacion es requerida</span
+          >
+        </mat-error>
+
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="fechaFinalizacion"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #fechaFinalizacion></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Precio</mat-label>
+        <input
+          type="number"
+          required
+          formControlName="price"
+          matInput
+          placeholder="Precio"
+          required
+        />
+        <mat-error>
+          <span *ngIf="courseForm.get('price')?.hasError('required')"
+            >El precio es requerido</span
+          >
+        </mat-error>
+      </mat-form-field>
+    </form>
+  </div>
+  <div class="buttonDialog" mat-dialog-actions>
+    <button mat-flat-button (click)="onNoClick()">Cancelar</button>
+    <button mat-flat-button (click)="onSave()">Guardar</button>
+  </div>
+</div>

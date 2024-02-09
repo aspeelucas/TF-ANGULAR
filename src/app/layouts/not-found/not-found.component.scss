@@ -1,0 +1,21 @@
+.container{
+    position: relative;
+    height: 100vh;
+    margin: 0px;
+    overflow: hidden;
+    
+}
+.erorrContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    color: #6930C3 ;
+}
+.erorrContainer img{
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+}

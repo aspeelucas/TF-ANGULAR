@@ -1,8 +1,5 @@
-<div><h1 appFontSize>Lista de Usuarios</h1></div>
+<h1>Detalle de usuario</h1>
 <div class="formUserContainer">
-  <div class="buttonContainer">
-    <button (click)="onCreateUser()" mat-flat-button>Agregar Usuario</button>
-  </div>
   <div class="tableBody">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <ng-container matColumnDef="id">
@@ -37,23 +34,39 @@
           {{ user.role }}
         </td>
       </ng-container>
-      <ng-container matColumnDef="actions">
-        <th class="acctionText" mat-header-cell *matHeaderCellDef>Acciones</th>
-        <td class="actionButton" mat-cell *matCellDef="let user">
-          {{ user.actions }}
-          <button [routerLink]="user.id" mat-icon-button class="buttonEdit">
-            <mat-icon>visibility</mat-icon>
-          </button>
-          <button (click)=" onEditUser(user)" class="buttonEdit" mat-icon-button >
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-icon-button color="warn" (click)="showModalDeleted(user)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </td>
-      </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+  <h2>Listado de cursos inscriptos</h2>
+  <div class="tableBody">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="id2">
+        <th class="acctionText" mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <th class="acctionText" mat-header-cell *matHeaderCellDef>Curso</th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+      <ng-container matColumnDef="start">
+        <th class="acctionText" mat-header-cell *matHeaderCellDef>
+          Fecha de inicio
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+      </ng-container>
+      <ng-container matColumnDef="end">
+        <th class="acctionText" mat-header-cell *matHeaderCellDef>
+          Fecha de finalizacion
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+      </ng-container>
+      <ng-container matColumnDef="price">
+        <th class="acctionText" mat-header-cell *matHeaderCellDef>Precio</th>
+        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsCourses"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsCourses"></tr>
     </table>
   </div>
 </div>

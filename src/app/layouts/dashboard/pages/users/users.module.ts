@@ -6,6 +6,8 @@ import { UserDialogComponent } from './components/user-dialog/user-dialog.compon
 import { UsersService } from '../../../../core/services/users.service';
 import { UsersMockService } from '../../../../core/services/users-mock.services';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserDetailComponent } from './pages/user-detail/user-detail.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -14,12 +16,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     UsersComponent,
-    UserDialogComponent
+    UserDialogComponent,
+    UserDetailComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ],
   exports: [
     UsersComponent
