@@ -10,7 +10,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-
+import {MatCardModule} from '@angular/material/card';
+import { ValidationErrorsPipe } from './validation-errors.pipe';
 
 
 
@@ -20,7 +21,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 @NgModule({
     declarations: [
     FullNamePipe,
-    FontSizeDirective
+    FontSizeDirective,
+    ValidationErrorsPipe
   ],
     imports: [CommonModule],
     exports: [
@@ -33,7 +35,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
         MatInputModule,
         MatSelectModule,
         ReactiveFormsModule,
-        MatDatepickerModule
+        MatDatepickerModule,
+        MatCardModule,
+        ValidationErrorsPipe
     ]
 })
 

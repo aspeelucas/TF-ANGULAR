@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { UsersComponent } from './pages/users/users.component';
 import { UserDetailComponent } from './pages/users/pages/user-detail/user-detail.component';
+import { adminGuard } from '../../core/guards/admin.guard';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -30,9 +31,14 @@ import { UserDetailComponent } from './pages/users/pages/user-detail/user-detail
         path: 'home',
         component: HomeComponent,
       },
+      // {
+      //   path: 'users',
+      //   component: UsersComponent,
+      // },
       {
         path: 'users',
-        component: UsersComponent,
+        canActivate: [adminGuard],
+        loadChildren: () => import('./pages/users/users.module').then(m => m.UsersModule),
       },
       {
         path: 'users/:id',

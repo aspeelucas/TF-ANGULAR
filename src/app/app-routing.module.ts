@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './layouts/dashboard/dashboard.component';
-import { LoginComponent } from './layouts/auth/pages/login/login.component';
 import { NotFoundComponent } from './layouts/not-found/not-found.component';
+import { authGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -14,14 +14,16 @@ const routes: Routes = [
   // RUTA PARA DASHBOARD
   {
   path:'dashboard',
+  canActivate: [authGuard],
   component: DashboardComponent,
   loadChildren: () => import('./layouts/dashboard/dashboard.module').then(m => m.DashboardModule),
 },
 // RUTA PARA LOGIN
 {
-  path:'auth/login',
-  component: LoginComponent,
+  path:'auth',
+  loadChildren: () => import('./layouts/auth/auth.module').then(m => m.AuthModule)
 },
+
 // RUTA PARA 404
 {
   path:'404',

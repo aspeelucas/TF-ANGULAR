@@ -7,7 +7,8 @@ import { UsersService } from '../../../../core/services/users.service';
 import { UsersMockService } from '../../../../core/services/users-mock.services';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserDetailComponent } from './pages/user-detail/user-detail.component';
-import { RouterModule } from '@angular/router';
+import { UsersRoutingModule } from './users-routing.module';
+
 
 
 
@@ -23,7 +24,7 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     SharedModule,
     ReactiveFormsModule,
-    RouterModule
+   UsersRoutingModule
   ],
   exports: [
     UsersComponent

@@ -24,9 +24,7 @@
           <mat-label>Email</mat-label>
           <input formControlName="email" matInput placeholder="Email" type="email"required />
           <mat-error>
-            <span *ngIf="userForm.get('email')?.hasError('required')"
-              >El email es requerido</span
-            >
+            {{userForm.get('email')?.errors| validationErrors}}
           </mat-error>
         </mat-form-field>
         <mat-form-field>

@@ -9,9 +9,11 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { HomeModule } from './layouts/dashboard/pages/home/home.module';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
+
    
   ],
   imports: [

@@ -28,4 +28,13 @@ export class AlertService {
       confirmButtonText: 'Aceptar',
     });
   }
+
+  showError(title: string, text: string): void {
+    this.notification$.next({
+      title,
+      text,
+      icon: 'error',
+      confirmButtonText: 'Aceptar',
+    });
+  }
 }
