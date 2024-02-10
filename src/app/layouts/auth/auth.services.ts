@@ -28,7 +28,7 @@ export class AuthService {
       firstName: 'Jorge',
       lastName: 'Test',
       email: 'testemail@gmail',
-      role: 'role',
+      role: 'admin',
       phone: 1234567890,
       password: 'test',
     };
