@@ -10,7 +10,6 @@ import { UsersModule } from './pages/users/users.module';
 import { HomeModule } from './pages/home/home.module';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
-import { UsersComponent } from './pages/users/users.component';
 import { UserDetailComponent } from './pages/users/pages/user-detail/user-detail.component';
 import { adminGuard } from '../../core/guards/admin.guard';
 
@@ -27,14 +26,12 @@ import { adminGuard } from '../../core/guards/admin.guard';
     HomeModule,
     RouterModule.forChild([
       // PATH PARA /DASHBOARD
+      
       {
         path: 'home',
-        component: HomeComponent,
+        loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule),
+        // component: HomeComponent,
       },
-      // {
-      //   path: 'users',
-      //   component: UsersComponent,
-      // },
       {
         path: 'users',
         canActivate: [adminGuard],
@@ -42,6 +39,7 @@ import { adminGuard } from '../../core/guards/admin.guard';
       },
       {
         path: 'users/:id',
+        canActivate: [adminGuard],
         component: UserDetailComponent,
       },
       {

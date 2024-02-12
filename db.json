@@ -1,0 +1,29 @@
+{
+  "users": [
+    {
+      "firstName": "Lucas",
+      "lastName": "aspee",
+      "email": "lucasgarcia@gmail.com",
+      "phone": 123456789,
+      "role": "Admin",
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "firstName": "Pedro",
+      "lastName": "Tobalada",
+      "email": "ptobalda@gmail.com",
+      "phone": 123456789,
+      "role": "Estudiante"
+    },
+    {
+      "id": "3",
+      "firstName": "Juan",
+      "lastName": "Perez",
+      "email": "juanp@gmail.com",
+      "phone": 123456789,
+      "role": "Estudiante"
+    }
+  ],
+  "courses": []
+}

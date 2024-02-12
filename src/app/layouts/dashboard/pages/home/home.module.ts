@@ -4,6 +4,8 @@ import { HomeComponent } from './home.component';
 import {MatButtonModule} from '@angular/material/button';
 import { SharedModule } from '../../../../shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { HomeRoutingModule } from './home-routing.module';
+
 
 
 
@@ -15,7 +17,9 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     MatButtonModule,
     SharedModule,
-    RouterModule
+    // RouterModule,
+    HomeRoutingModule
+    
   ],
   exports: [
     HomeComponent

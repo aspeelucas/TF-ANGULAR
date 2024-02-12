@@ -1,34 +1,19 @@
 import { Injectable } from '@angular/core';
 import { IUsers } from '../../layouts/dashboard/pages/users/models/users.interface';
-import { Observable, delay, of, tap } from 'rxjs';
+import { Observable, catchError, delay, mergeMap, of, tap } from 'rxjs';
 import { AlertService } from './alert.service';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environments';
 
 const ROLES_DB: string[] = ['Admin', 'Estudiante'];
-let USERS_DB: IUsers[] = [
-  {
-    id: 1,
-    firstName: 'Lucas',
-    lastName: 'Garcia',
-    email: 'lucasgarcia@gmail.com',
-    phone: 123456789,
-    role: 'Admin',
-  },
-  {
-    id: 2,
-    firstName: 'Pedro',
-    lastName: 'Tobalada',
-    email: 'ptobalda@gmail.com',
-    phone: 123456789,
-    role: 'Estudiante',
-  },
-];
-
-
+let USERS_DB: IUsers[] = [];
 
 @Injectable()
 export class UsersService {
-
-  constructor(private alertServices: AlertService) {
+  constructor(
+    private alertServices: AlertService,
+    private htttpClient: HttpClient
+  ) {
     console.log('Servicio instanciado');
   }
 
@@ -37,7 +22,7 @@ export class UsersService {
   }
 
   getUsers() {
-    return of(USERS_DB).pipe(delay(1000));
+    return this.htttpClient.get<IUsers[]>(`${environment.apiUrl}users`);
   }
 
   getUserById(id: number | string): Observable<IUsers | undefined> {
@@ -46,38 +31,63 @@ export class UsersService {
   }
 
   createUser(payload: IUsers) {
-    USERS_DB.push(payload);
-    return this.getUsers().pipe(
-      tap(() =>
-        this.alertServices.showSuccess(
-          'Usuario creado',
-          'El usuario fue creado correctamente'
+    return this.htttpClient
+      .post<IUsers>(`${environment.apiUrl}users`, payload)
+      .pipe(mergeMap(() => this.getUsers()))
+      .pipe(
+        tap(() =>
+          this.alertServices.showSuccess(
+            'Usuario creado',
+            'El usuario fue creado correctamente'
+          )
         )
-      )
-    );
+      );
   }
   deleteUser(id: number) {
-    USERS_DB = USERS_DB.filter((user) => user.id !== id);
-    return this.getUsers().pipe(
-      tap(() =>
-        this.alertServices.showSuccess(
-          'Usuario eliminado',
-          'El usuario fue eliminado correctamente'
+    return this.htttpClient
+      .delete<IUsers>(`${environment.apiUrl}users/${id}`)
+      .pipe(mergeMap(() => this.getUsers()))
+      .pipe(
+        tap(() =>
+          this.alertServices.showSuccess(
+            'Usuario eliminado',
+            'El usuario fue eliminado correctamente'
+          )
         )
-      )
-    );
+      );
   }
   updateUserById(id: number, payload: IUsers) {
-    USERS_DB = USERS_DB.map((user) =>
-      user.id === id ? { ...user, ...payload } : user
-    );
-    return this.getUsers().pipe(
-      tap(() =>
-        this.alertServices.showSuccess(
-          'Usuario actualizado',
-          'El usuario fue actualizado correctamente'
+    // USERS_DB = USERS_DB.map((user) =>
+    //   user.id === id ? { ...user, ...payload } : user
+    // );
+    // return this.getUsers().pipe(
+    //   tap(() =>
+    //     this.alertServices.showSuccess(
+    //       'Usuario actualizado',
+    //       'El usuario fue actualizado correctamente'
+    //     )
+    //   )
+    // );
+
+    return this.htttpClient
+      .put<IUsers>(`${environment.apiUrl}users/${id}`, payload)
+      .pipe(mergeMap(() => this.getUsers()))
+      .pipe(
+        tap(() =>
+          this.alertServices.showSuccess(
+            'Usuario actualizado',
+            'El usuario fue actualizado correctamente'
+          )
         )
       )
-    );
+      .pipe(
+        catchError((error) => {
+          this.alertServices.showError(
+            'Error',
+            'Error al actualizar el usuario'
+          );
+          return of([]);
+        })
+      );
   }
 }

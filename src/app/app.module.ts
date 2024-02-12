@@ -7,6 +7,7 @@ import { DashboardModule } from './layouts/dashboard/dashboard.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatNativeDateModule } from '@angular/material/core';
 import { HomeModule } from './layouts/dashboard/pages/home/home.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -22,7 +23,8 @@ import { HomeModule } from './layouts/dashboard/pages/home/home.module';
     DashboardModule,
     MatProgressSpinnerModule,
     MatNativeDateModule,
-    HomeModule
+    HomeModule,
+    HttpClientModule
   ],
   providers: [
     provideAnimationsAsync()

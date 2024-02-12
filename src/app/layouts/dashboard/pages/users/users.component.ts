@@ -84,7 +84,7 @@ export class UsersComponent implements OnInit {
   onUserSubmitted(user: IUsers): void {
     this.loadingService.setLoading(true);
     this.usersService
-      .createUser({ ...user, id: this.dataSource.length + 1 })
+      .createUser(user)
       .subscribe({
         next: (users) => {
           this.dataSource = [...users];
