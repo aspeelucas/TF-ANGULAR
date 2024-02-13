@@ -41,7 +41,7 @@ export class CoursesComponent {
         next: (result) => {
           if (result) {
             this.coursesService
-              .createCourse({ ...result, id: this.courses.length + 1 })
+              .createCourse(result)
               .subscribe({
                 next: (courses) => {
                   this.courses = courses;

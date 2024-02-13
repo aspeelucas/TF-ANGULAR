@@ -25,5 +25,34 @@
       "role": "Estudiante"
     }
   ],
-  "courses": []
+  "courses": [
+    {
+      "id": "1",
+      "nameCourse": "Ingles Basico",
+      "start": "0111-01-01T03:53:48.000Z",
+      "end": "0111-01-01T03:53:48.000Z",
+      "price": "1000"
+    },
+    {
+      "id": "2",
+      "nameCourse": "Ingles Intermedio",
+      "start": "0111-01-01T03:53:48.000Z",
+      "end": "0111-01-01T03:53:48.000Z",
+      "price": "2000"
+    },
+    {
+      "id": "3",
+      "nameCourse": "Ingles Avanzado",
+      "start": "0111-01-01T03:53:48.000Z",
+      "end": "0111-01-01T03:53:48.000Z",
+      "price": 5000
+    },
+    {
+      "id": "67f8",
+      "nameCourse": "Ingles Basico",
+      "start": "2033-01-01T03:00:00.000Z",
+      "end": "4444-01-01T00:00:00.000Z",
+      "price": 3333
+    }
+  ]
 }

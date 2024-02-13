@@ -22,6 +22,7 @@
       <ng-container matColumnDef="start">
         <th class="acctionText" mat-header-cell *matHeaderCellDef>Comienzo</th>
         <td class="acctionText" mat-cell *matCellDef="let element">
+          <!-- {{ element.start }} -->
           {{ element.start | date : "dd/MM/YYYY" }}
         </td>
       </ng-container>
@@ -31,6 +32,7 @@
           Finalizacion
         </th>
         <td class="acctionText" mat-cell *matCellDef="let element">
+          <!-- {{ element.end  }} -->
           {{ element.end | date : "dd/MM/YYYY" }}
         </td>
       </ng-container>
