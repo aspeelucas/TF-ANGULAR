@@ -20,6 +20,7 @@ export class UsersComponent implements OnInit {
     'email',
     'phone',
     'role',
+    'password',
     'actions',
   ];
   dataSource: IUsers[] = [];

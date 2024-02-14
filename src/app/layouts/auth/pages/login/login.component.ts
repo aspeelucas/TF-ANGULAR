@@ -22,7 +22,7 @@ export class LoginComponent {
 
   onSubmit():void{
     if(this.loginForm.invalid){
-      this.loginForm.markAsTouched();
+      this.loginForm.markAllAsTouched();
     }
     else{
       this.authService.login(this.loginForm.value);

@@ -28,6 +28,15 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field>
+          <mat-label>Contraseña</mat-label>
+          <input type="text" formControlName="password" matInput placeholder="Contraseña" type="text" required/>
+          <mat-error>
+            <span *ngIf="userForm.get('password')?.hasError('required')"
+              >La contraseña es requerida</span
+            >
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
           <mat-label>Telefono</mat-label>
           <input formControlName="phone" matInput placeholder="Telefono" type="number"required />
           <mat-error>

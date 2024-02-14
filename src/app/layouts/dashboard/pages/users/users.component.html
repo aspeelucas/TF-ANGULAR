@@ -37,6 +37,12 @@
           {{ user.role }}
         </td>
       </ng-container>
+      <ng-container matColumnDef="password">
+        <th class="acctionText" mat-header-cell *matHeaderCellDef>Password</th>
+        <td class="acctionText" mat-cell *matCellDef="let user">
+          {{ user.password }}
+        </td>
+      </ng-container>
       <ng-container matColumnDef="actions">
         <th class="acctionText" mat-header-cell *matHeaderCellDef>Acciones</th>
         <td class="actionButton" mat-cell *matCellDef="let user">

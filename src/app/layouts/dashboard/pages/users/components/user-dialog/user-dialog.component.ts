@@ -30,6 +30,7 @@ export class UserDialogComponent {
       ]),
       email: this.fb.control('', [Validators.required, Validators.email]),
       phone: this.fb.control('', [Validators.required]),
+      password: this.fb.control('', [Validators.required]),
       role: this.fb.control('', Validators.required),
     });
     if (editingUser) {

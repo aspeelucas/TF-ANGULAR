@@ -6,7 +6,9 @@
       "email": "lucasgarcia@gmail.com",
       "phone": 123456789,
       "role": "Admin",
-      "id": "1"
+      "password": "test",
+      "id": "1",
+      "token": "absdde33"
     },
     {
       "id": "2",
@@ -14,7 +16,9 @@
       "lastName": "Tobalada",
       "email": "ptobalda@gmail.com",
       "phone": 123456789,
-      "role": "Estudiante"
+      "password": "123456",
+      "role": "Estudiante",
+      "token": "absdde334"
     },
     {
       "id": "3",
@@ -22,7 +26,19 @@
       "lastName": "Perez",
       "email": "juanp@gmail.com",
       "phone": 123456789,
-      "role": "Estudiante"
+      "password": "444a33",
+      "role": "Estudiante",
+      "token": "absdde335"
+    },
+    {
+      "id": "243d",
+      "firstName": "Jose",
+      "lastName": "Ocampo",
+      "email": "ocampo@gmail.com",
+      "phone": 213123123,
+      "password": "373737",
+      "role": "Admin",
+      "token": "absdde3388"
     }
   ],
   "courses": [
