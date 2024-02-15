@@ -3,10 +3,10 @@ import { Subject } from 'rxjs';
 import Swal, { SweetAlertOptions } from 'sweetalert2';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AlertService {
-  private notification$ = new Subject<SweetAlertOptions>()
+  private notification$ = new Subject<SweetAlertOptions>();
 
   constructor() {
     this.notification$.subscribe({
@@ -15,13 +15,13 @@ export class AlertService {
       },
     });
   }
-  
+
   showAlert(options: SweetAlertOptions): void {
     this.notification$.next(options);
   }
 
   showSuccess(title: string, text: string): void {
-   this.notification$.next({
+    this.notification$.next({
       title,
       text,
       icon: 'success',

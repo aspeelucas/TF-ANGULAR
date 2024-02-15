@@ -6,8 +6,6 @@ import { AlertService } from '../../../../core/services/alert.service';
 import { environment } from '../../../../../environments/environments';
 import { HttpClient } from '@angular/common/http';
 
-
-
 @Injectable()
 export class CoursesService {
   constructor(

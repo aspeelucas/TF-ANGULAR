@@ -1,6 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { AuthService } from './auth.services';
-import { HttpTestingController } from '@angular/common/http/testing';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 import { IUsers } from '../dashboard/pages/users/models/users.interface';
 
 describe('Pruebas del AuthServices', () => {
@@ -9,6 +12,7 @@ describe('Pruebas del AuthServices', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [AuthService],
+      imports: [HttpClientTestingModule],
     });
     authService = TestBed.inject(AuthService);
     httpControler = TestBed.inject(HttpTestingController);
@@ -30,11 +34,18 @@ describe('Pruebas del AuthServices', () => {
         token: 'dasdasdasd',
       },
     ];
-    authService.login({ email: 'testemail@gmail', password: 'test' });
-    authService.authUser
+    authService
+      .login({ email: 'testemail@gmail', password: 'test' })
+      .subscribe({
+        next: (user) => {
+          expect(authService.authUser).toBeTruthy();
+          expect(authService.authUser).toEqual(MOCK_RESPONSE[0]);
+        },
+      });
+    authService.authUser;
     httpControler
       .expectOne({
-        url: 'http://localhost:3000/login?email=testemail@gmail&password=test',
+        url: 'http://localhost:3000/users?email=testemail@gmail&password=test',
         method: 'GET',
       })
       .flush(MOCK_RESPONSE);

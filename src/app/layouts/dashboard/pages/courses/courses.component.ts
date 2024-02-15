@@ -8,10 +8,9 @@ import { CoursesDialogComponent } from './components/courses-dialog/courses-dial
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
-  styleUrl: './courses.component.scss'
+  styleUrl: './courses.component.scss',
 })
 export class CoursesComponent {
-
   displayedColumns: string[] = [
     'id',
     'nameCourse',
@@ -40,13 +39,11 @@ export class CoursesComponent {
       .subscribe({
         next: (result) => {
           if (result) {
-            this.coursesService
-              .createCourse(result)
-              .subscribe({
-                next: (courses) => {
-                  this.courses = courses;
-                },
-              });
+            this.coursesService.createCourse(result).subscribe({
+              next: (courses) => {
+                this.courses = courses;
+              },
+            });
           }
         },
       });
@@ -94,6 +91,4 @@ export class CoursesComponent {
       }
     });
   }
-
-
 }

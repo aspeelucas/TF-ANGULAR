@@ -9,31 +9,20 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UserDetailComponent } from './pages/user-detail/user-detail.component';
 import { UsersRoutingModule } from './users-routing.module';
 
-
-
-
-
-
 @NgModule({
-  declarations: [
-    UsersComponent,
-    UserDialogComponent,
-    UserDetailComponent
-  ],
+  declarations: [UsersComponent, UserDialogComponent, UserDetailComponent],
   imports: [
     CommonModule,
     SharedModule,
     ReactiveFormsModule,
-   UsersRoutingModule
+    UsersRoutingModule,
   ],
-  exports: [
-    UsersComponent
-  ],
+  exports: [UsersComponent],
   providers: [
-   {
+    {
       provide: UsersService,
-      useClass: UsersMockService
-   }
-  ]
+      useClass: UsersMockService,
+    },
+  ],
 })
-export class UsersModule { }
+export class UsersModule {}

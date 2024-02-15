@@ -4,26 +4,9 @@ import { Observable, catchError, delay, mergeMap, of, tap } from 'rxjs';
 import { AlertService } from './alert.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environments';
+import { IPagination } from '../models/pagination';
 
 const ROLES_DB: string[] = ['Admin', 'Estudiante'];
-let USERS_DB: IUsers[] = [
-  // {
-  //   id: 1,
-  //   firstName: 'Lucas',
-  //   lastName: 'Garcia',
-  //   email: 'lucasgarcia@gmail.com',
-  //   phone: 123456789,
-  //   role: 'Admin',
-  // },
-  // {
-  //   id: 2,
-  //   firstName: 'Pedro',
-  //   lastName: 'Tobalada',
-  //   email: 'ptobalda@gmail.com',
-  //   phone: 123456789,
-  //   role: 'Estudiante',
-  // },
-];
 
 @Injectable()
 export class UsersMockService {
@@ -33,12 +16,24 @@ export class UsersMockService {
   ) {
     console.log('Servicio instanciado mock');
   }
+
+  generateString(length: number) {
+    const characters =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = ' ';
+    const charactersLength = characters.length;
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+
+    return result;
+  }
+
   getRoles(): Observable<string[]> {
     return of(ROLES_DB).pipe(delay(1000));
   }
 
   getUsers() {
-    // return of(USERS_DB).pipe(delay(1000));
     return this.htttpClient
       .get<IUsers[]>(`${environment.apiUrl}users`)
       .pipe(delay(1000))
@@ -52,9 +47,24 @@ export class UsersMockService {
         })
       );
   }
+
+  paginate(page: number, perPage = 5) {
+    return this.htttpClient
+      .get<IPagination<IUsers>>(
+        `${environment.apiUrl}users?_page=${page}&_per_page=${perPage}`
+      )
+      .pipe(
+        catchError((error) => {
+          this.alertServices.showError(
+            'Error',
+            'Error al obtener los usuarios'
+          );
+          return of({ data: [], total: 0 });
+        })
+      );
+  }
+
   getUserById(id: number | string): Observable<IUsers | undefined> {
-    // USERS_DB.find((user) => user.id === id);
-    // return of(USERS_DB.find((user) => user.id == id)).pipe(delay(1000));
     return this.htttpClient
       .get<IUsers>(`${environment.apiUrl}users/${id}`)
       .pipe(
@@ -66,17 +76,11 @@ export class UsersMockService {
   }
 
   createUser(payload: IUsers) {
-    // USERS_DB.push(payload);
-    // return this.getUsers().pipe(
-    //   tap(() =>
-    //     this.alertServices.showSuccess(
-    //       'Usuario creado',
-    //       'El usuario fue creado correctamente'
-    //     )
-    //   )
-    // );
     return this.htttpClient
-      .post<IUsers>(`${environment.apiUrl}users`, payload)
+      .post<IUsers>(`${environment.apiUrl}users`, {
+        ...payload,
+        token: this.generateString(15),
+      })
       .pipe(mergeMap(() => this.getUsers()))
       .pipe(
         tap(() =>
@@ -95,15 +99,6 @@ export class UsersMockService {
   }
 
   deleteUser(id: number) {
-    // USERS_DB = USERS_DB.filter((user) => user.id !== id);
-    // return this.getUsers().pipe(
-    //   tap(() =>
-    //     this.alertServices.showSuccess(
-    //       'Usuario eliminado',
-    //       'El usuario fue eliminado correctamente'
-    //     )
-    //   )
-    // );
     return this.htttpClient
       .delete<IUsers>(`${environment.apiUrl}users/${id}`)
       .pipe(mergeMap(() => this.getUsers()))

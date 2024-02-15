@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoadingService {
   private loadingTriggered$ = new BehaviorSubject<boolean>(false);
@@ -12,5 +12,4 @@ export class LoadingService {
   setLoading(value: boolean): void {
     this.loadingTriggered$.next(value);
   }
-  
 }

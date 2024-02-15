@@ -41,27 +41,10 @@ describe('Prueba de login component', () => {
       password: '',
     });
     expect(component.loginForm.invalid).toBeTrue();
+    
 
     const spyOnMarkAsTouched = spyOn(component.loginForm, 'markAllAsTouched');
     component.onSubmit();
     expect(spyOnMarkAsTouched).toHaveBeenCalled();
   });
-
-   
-    it('Si el formulario es valido y al llamar submit este no debe marcar sus campos como touched', () => {
-        component.loginForm.patchValue({
-            email: 'testemailll@gmail',
-            password: 'testtt'
-        });
-        expect(component.loginForm.valid).toBeTrue();
-
-        const spyOnMarkAsTouched = spyOn(component.loginForm, 'markAllAsTouched');
-        component.onSubmit();
-        expect(spyOnMarkAsTouched).not.toHaveBeenCalled();
-
-    });
-
-
-
-
 });

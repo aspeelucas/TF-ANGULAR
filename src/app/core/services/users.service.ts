@@ -4,6 +4,7 @@ import { Observable, catchError, delay, mergeMap, of, tap } from 'rxjs';
 import { AlertService } from './alert.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environments';
+import { IPagination } from '../models/pagination';
 
 const ROLES_DB: string[] = ['Admin', 'Estudiante'];
 let USERS_DB: IUsers[] = [];
@@ -23,6 +24,13 @@ export class UsersService {
 
   getUsers() {
     return this.htttpClient.get<IUsers[]>(`${environment.apiUrl}users`);
+  }
+  paginate(page: number, perPage = 5) {
+    return this.htttpClient
+      .get<IPagination<IUsers>>(
+        `${environment.apiUrl}users?_page=${page}&_per_page=${perPage}`
+      )
+      .pipe(delay(1000));
   }
 
   getUserById(id: number | string): Observable<IUsers | undefined> {
@@ -57,18 +65,6 @@ export class UsersService {
       );
   }
   updateUserById(id: number, payload: IUsers) {
-    // USERS_DB = USERS_DB.map((user) =>
-    //   user.id === id ? { ...user, ...payload } : user
-    // );
-    // return this.getUsers().pipe(
-    //   tap(() =>
-    //     this.alertServices.showSuccess(
-    //       'Usuario actualizado',
-    //       'El usuario fue actualizado correctamente'
-    //     )
-    //   )
-    // );
-
     return this.htttpClient
       .put<IUsers>(`${environment.apiUrl}users/${id}`, payload)
       .pipe(mergeMap(() => this.getUsers()))

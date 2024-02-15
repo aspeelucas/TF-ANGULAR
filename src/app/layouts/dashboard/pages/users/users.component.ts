@@ -6,6 +6,7 @@ import { forkJoin } from 'rxjs';
 import Swal from 'sweetalert2';
 import { MatDialog } from '@angular/material/dialog';
 import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-users',
@@ -27,6 +28,10 @@ export class UsersComponent implements OnInit {
   roles: string[] = [];
   loading = false;
 
+  totalItemsPage = 0;
+  pageSize = 5;
+  currentPage = 1;
+
   constructor(
     private usersService: UsersService,
     private loadingService: LoadingService,
@@ -42,14 +47,27 @@ export class UsersComponent implements OnInit {
 
     forkJoin([
       this.usersService.getRoles(),
-      this.usersService.getUsers(),
+      this.usersService.paginate(this.currentPage),
     ]).subscribe({
       next: (value) => {
         this.roles = value[0];
-        this.dataSource = value[1];
+        const paginationResult = value[1];
+        this.totalItemsPage = paginationResult.items;
+        this.dataSource = paginationResult.data;
       },
       complete: () => {
         this.loadingService.setLoading(false);
+      },
+    });
+  }
+
+  onPage(ev: PageEvent) {
+    this.currentPage = ev.pageIndex + 1;
+    this.usersService.paginate(this.currentPage, ev.pageSize).subscribe({
+      next: (paginationResult) => {
+        this.totalItemsPage = paginationResult.items;
+        this.dataSource = paginationResult.data;
+        this.pageSize = ev.pageSize;
       },
     });
   }
@@ -84,16 +102,14 @@ export class UsersComponent implements OnInit {
 
   onUserSubmitted(user: IUsers): void {
     this.loadingService.setLoading(true);
-    this.usersService
-      .createUser(user)
-      .subscribe({
-        next: (users) => {
-          this.dataSource = [...users];
-        },
-        complete: () => {
-          this.loadingService.setLoading(false);
-        },
-      });
+    this.usersService.createUser(user).subscribe({
+      next: (users) => {
+        this.dataSource = [...users];
+      },
+      complete: () => {
+        this.loadingService.setLoading(false);
+      },
+    });
   }
 
   // metodos dialog
@@ -132,5 +148,4 @@ export class UsersComponent implements OnInit {
         },
       });
   }
-  
 }

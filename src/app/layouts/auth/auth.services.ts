@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { IUsers } from '../dashboard/pages/users/models/users.interface';
 import { Router } from '@angular/router';
 import { AlertService } from '../../core/services/alert.service';
-import { delay, finalize, map, of, tap } from 'rxjs';
+import { Observable, delay, finalize, map, tap } from 'rxjs';
 import { LoadingService } from '../../core/services/loading.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environments';
@@ -11,16 +11,6 @@ interface ILoginData {
   email: string;
   password: string;
 }
-
-// const MOCK_USER = {
-//   id: 1,
-//   firstName: 'Jorge',
-//   lastName: 'Test',
-//   email: 'testemail@gmail',
-//   role: 'Admin',
-//   phone: 1234567890,
-//   password: 'test',
-// };
 
 @Injectable({
   providedIn: 'root',
@@ -40,13 +30,13 @@ export class AuthService {
     localStorage.setItem('token', user.token);
   }
 
-  login(data: ILoginData): void {
-    this.httpClient
+  login(data: ILoginData): Observable<IUsers[]> {
+    return this.httpClient
       .get<IUsers[]>(
         `${environment.apiUrl}users?email=${data.email}&password=${data.password}`
       )
-      .subscribe({
-        next: (response) => {
+      .pipe(
+        tap((response) => {
           if (!!response[0]) {
             this.setAuthUser(response[0]);
             this.router.navigate(['dashboard', 'home']);
@@ -56,21 +46,8 @@ export class AuthService {
               'Porfavor vuelva a intentar'
             );
           }
-        },
-      });
-
-    // if (
-    //   data.email === MOCK_USER.email &&
-    //   data.password === MOCK_USER.password
-    // ) {
-    //   this.setAuthUser(MOCK_USER);
-    //   this.router.navigate(['dashboard', 'home']);
-    // } else {
-    //   this.alertServices.showError(
-    //     'Email o Password invalidas',
-    //     'Porfavor vuelva a intentar'
-    //   );
-    // }
+        })
+      );
   }
 
   logOut(): void {
@@ -80,16 +57,6 @@ export class AuthService {
   }
 
   verifyToken() {
-    // this.loading.setLoading(true);
-    // return of(localStorage.getItem('token')).pipe(
-    //   delay(1000),
-    //   map((response) => !!response),
-    //   tap(() => {
-    //     this.setAuthUser(MOCK_USER);
-    //   }),
-    //   finalize(() => this.loading.setLoading(false))
-    // );
-
     this.loading.setLoading(true);
     return this.httpClient
       .get<IUsers[]>(
@@ -108,7 +75,6 @@ export class AuthService {
           }
         }),
         finalize(() => this.loading.setLoading(false))
-        
       );
   }
 }

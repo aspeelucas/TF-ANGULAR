@@ -50,7 +50,7 @@
           <button [routerLink]="user.id" mat-icon-button class="buttonEdit">
             <mat-icon>visibility</mat-icon>
           </button>
-          <button (click)=" onEditUser(user)" class="buttonEdit" mat-icon-button >
+          <button (click)="onEditUser(user)" class="buttonEdit" mat-icon-button>
             <mat-icon>edit</mat-icon>
           </button>
           <button mat-icon-button color="warn" (click)="showModalDeleted(user)">
@@ -62,4 +62,12 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
   </div>
+  <mat-paginator
+    (page)="onPage($event)"
+    [length]="totalItemsPage"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="Select page"
+  >
+  </mat-paginator>
 </div>

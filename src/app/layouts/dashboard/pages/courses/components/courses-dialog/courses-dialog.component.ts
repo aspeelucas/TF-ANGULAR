@@ -54,5 +54,4 @@ export class CoursesDialogComponent {
   onNoClick(): void {
     this.dialogRef.close();
   }
-
 }

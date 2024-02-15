@@ -1,15 +1,14 @@
-.app-loading{
-    position: fixed;
-    height: 100vh;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.253);
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
+.app-loading {
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.253);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.mat-mdc-progress-spinner.mat-primary{
-  --mdc-circular-progress-active-indicator-color: #6930C3;
+.mat-mdc-progress-spinner.mat-primary {
+  --mdc-circular-progress-active-indicator-color: #6930c3;
 }

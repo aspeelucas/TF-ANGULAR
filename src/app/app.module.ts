@@ -9,14 +9,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { HomeModule } from './layouts/dashboard/pages/home/home.module';
 import { HttpClientModule } from '@angular/common/http';
 
-
-
 @NgModule({
-  declarations: [
-    AppComponent,
-
-   
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -24,11 +18,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatProgressSpinnerModule,
     MatNativeDateModule,
     HomeModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  providers: [
-    provideAnimationsAsync()
-  ],
-  bootstrap: [AppComponent]
+  providers: [provideAnimationsAsync()],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

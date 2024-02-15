@@ -1,5 +1,10 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AlertService } from '../../../../../../core/services/alert.service';
 import { IUsers } from '../../models/users.interface';
@@ -7,10 +12,9 @@ import { IUsers } from '../../models/users.interface';
 @Component({
   selector: 'app-user-dialog',
   templateUrl: './user-dialog.component.html',
-  styleUrl: './user-dialog.component.scss'
+  styleUrl: './user-dialog.component.scss',
 })
 export class UserDialogComponent {
-
   userForm: FormGroup;
   constructor(
     private fb: FormBuilder,
@@ -47,7 +51,7 @@ export class UserDialogComponent {
         icon: 'error',
         confirmButtonText: 'Aceptar',
       });
-    } else{
+    } else {
       this.dialogRef.close(this.userForm.value);
     }
   }
@@ -59,5 +63,4 @@ export class UserDialogComponent {
   onNoClick(): void {
     this.dialogRef.close();
   }
-
 }
