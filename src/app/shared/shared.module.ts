@@ -13,6 +13,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCardModule } from '@angular/material/card';
 import { ValidationErrorsPipe } from './validation-errors.pipe';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [FullNamePipe, FontSizeDirective, ValidationErrorsPipe],
@@ -31,6 +32,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatCardModule,
     ValidationErrorsPipe,
     MatPaginatorModule,
+    MatMenuModule
   ],
 })
 export class SharedModule {}

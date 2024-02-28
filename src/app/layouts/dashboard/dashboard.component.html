@@ -39,15 +39,40 @@
   </mat-drawer>
   <div class="">
     <mat-toolbar color="primary" class="navbarContainer">
-      <button
-        mat-icon-button
-        (click)="drawer.toggle()"
-        class="example-icon"
-        aria-label="Example icon-button with menu icon"
-      >
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span>Instituto de ingles Forum</span>
+      <div class="iconHomeContainer">
+        <button
+          mat-icon-button
+          (click)="drawer.toggle()"
+          class="example-icon"
+          aria-label="Example icon-button with menu icon"
+        >
+          <mat-icon>menu</mat-icon>
+        </button>
+        <p>Instituto Forum</p>
+      </div>
+      <div class="userNameContainer" *ngIf="authUser$ | async; let user">
+        <button
+          class="buttonIconProfile"
+          mat-icon-button
+          [matMenuTriggerFor]="menu"
+        >
+          <mat-icon class="sizeIconProfile">person</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button class="logOutContainer" mat-menu-item>
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Example home icon"
+              fontIcon="exit_to_app"
+            ></mat-icon>
+            <a (click)="logout()">Cerrar sesion</a>
+          </button>
+        </mat-menu>
+        <div>
+          <p>Bienvenido/a :</p>
+          <p>{{ user | fullName }}</p>
+        </div>
+      </div>
     </mat-toolbar>
   </div>
   <div class="tableContainer">

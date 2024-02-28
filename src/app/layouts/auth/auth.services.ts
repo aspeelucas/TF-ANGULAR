@@ -6,27 +6,31 @@ import { Observable, delay, finalize, map, tap } from 'rxjs';
 import { LoadingService } from '../../core/services/loading.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environments';
+import { Store } from '@ngrx/store';
+import { authActions } from '../../core/store/auth/actions';
 
 interface ILoginData {
-  email: string;
-  password: string;
+  email: null| string;
+  password: null | string;
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  authUser: IUsers | null = null;
+  
 
   constructor(
     private router: Router,
     private alertServices: AlertService,
     private loading: LoadingService,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private store: Store
   ) {}
 
   private setAuthUser(user: IUsers): void {
-    this.authUser = user;
+    
+    this.store.dispatch(authActions.setAuthUser({ user }));
     localStorage.setItem('token', user.token);
   }
 
@@ -51,7 +55,7 @@ export class AuthService {
   }
 
   logOut(): void {
-    this.authUser = null;
+    this.store.dispatch(authActions.logOut());
     this.router.navigate(['auth', 'login']);
     localStorage.removeItem('token');
   }
@@ -69,7 +73,7 @@ export class AuthService {
             this.setAuthUser(response[0]);
             return true;
           } else {
-            this.authUser = null;
+            this.store.dispatch(authActions.logOut());
             localStorage.removeItem('token');
             return false;
           }

@@ -6,7 +6,7 @@ import { ValidationErrors } from '@angular/forms';
 })
 export class ValidationErrorsPipe implements PipeTransform {
   transform(errors?: ValidationErrors | null, ...args: unknown[]): unknown {
-    console.log(errors);
+  
     if (!!errors) {
       let messages = [];
       if (errors['required']) messages.push('Campo Requerido');

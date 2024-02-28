@@ -35,3 +35,44 @@
     justify-content: space-between;
     align-items: center;
 }
+.userNameContainer{
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 18px;
+    gap: 5px;
+    padding: 10px;
+}
+.userNameContainer p{
+    margin: 0px;
+}
+
+.iconHomeContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 18px;
+}
+.buttonIconProfile{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin: 0px;
+   padding: 0px;
+}
+
+.sizeIconProfile{
+    font-size: 30px;
+    color: white;
+    text-align: center;
+    width: 100%;
+}
+.logOutContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.logOutContainer a{
+    font-weight: 600;
+}

@@ -11,6 +11,7 @@ import { HomeModule } from './pages/home/home.module';
 import { RouterModule } from '@angular/router';
 import { UserDetailComponent } from './pages/users/pages/user-detail/user-detail.component';
 import { adminGuard } from '../../core/guards/admin.guard';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -22,6 +23,7 @@ import { adminGuard } from '../../core/guards/admin.guard';
     MatIconModule,
     MatListModule,
     UsersModule,
+    SharedModule,
     HomeModule,
     RouterModule.forChild([
       // PATH PARA /DASHBOARD

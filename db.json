@@ -3,11 +3,12 @@
     {
       "firstName": "Lucas",
       "lastName": "aspee",
-      "email": "lucasgarcia@gmail.com",
+      "email": "lucasaspe@gmail.com",
       "phone": 123456789,
       "password": "test",
       "role": "Admin",
-      "id": "1"
+      "id": "1",
+      "token": "absdde33432131"
     },
     {
       "id": "2",
