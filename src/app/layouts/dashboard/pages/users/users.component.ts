@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { IUsers } from './models/users.interface';
 import { UsersService } from '../../../../core/services/users.service';
 import { LoadingService } from '../../../../core/services/loading.service';
-import { forkJoin } from 'rxjs';
+import { forkJoin, map } from 'rxjs';
 import Swal from 'sweetalert2';
 import { MatDialog } from '@angular/material/dialog';
 import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
 import { PageEvent } from '@angular/material/paginator';
+import { Store } from '@ngrx/store';
+import { selectAuthUser } from '../../../../core/store/auth/selectors';
 
 @Component({
   selector: 'app-users',
@@ -27,6 +29,7 @@ export class UsersComponent implements OnInit {
   dataSource: IUsers[] = [];
   roles: string[] = [];
   loading = false;
+  currentUser: IUsers | null = null;
 
   totalItemsPage = 0;
   pageSize = 5;
@@ -35,11 +38,15 @@ export class UsersComponent implements OnInit {
   constructor(
     private usersService: UsersService,
     private loadingService: LoadingService,
-    private dialog: MatDialog
-  ) {}
+    private dialog: MatDialog,
+    private storeServices: Store
+  ) {
+
+  }
 
   ngOnInit(): void {
     this.getPageData();
+    this.getCurrentUser();
   }
 
   getPageData() {
@@ -82,6 +89,19 @@ export class UsersComponent implements OnInit {
         this.loadingService.setLoading(false);
       },
     });
+  }
+
+  getCurrentUser(): void {
+    this.storeServices.select(selectAuthUser).subscribe({
+      next: (user) => {
+        console.log(user);
+        this.currentUser = user;
+      },
+    });
+  }
+
+  isAdmin(): boolean {
+    return this.currentUser?.role === 'Admin';
   }
 
   showModalDeleted(ev: IUsers): void {

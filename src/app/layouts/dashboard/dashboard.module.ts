@@ -12,6 +12,9 @@ import { RouterModule } from '@angular/router';
 import { UserDetailComponent } from './pages/users/pages/user-detail/user-detail.component';
 import { adminGuard } from '../../core/guards/admin.guard';
 import { SharedModule } from '../../shared/shared.module';
+import { UsersService } from '../../core/services/users.service';
+import { UsersMockService } from '../../core/services/users-mock.services';
+import { UsersComponent } from './pages/users/users.component';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -22,7 +25,6 @@ import { SharedModule } from '../../shared/shared.module';
     MatToolbarModule,
     MatIconModule,
     MatListModule,
-    UsersModule,
     SharedModule,
     HomeModule,
     RouterModule.forChild([
@@ -36,19 +38,26 @@ import { SharedModule } from '../../shared/shared.module';
       },
       {
         path: 'users',
-        canActivate: [adminGuard],
+        // canActivate: [adminGuard],
         loadChildren: () =>
           import('./pages/users/users.module').then((m) => m.UsersModule),
       },
-      {
-        path: 'users/:id',
-        canActivate: [adminGuard],
-        component: UserDetailComponent,
-      },
+      // {
+      //   path: 'users/:id',
+      //   canActivate: [adminGuard],
+      //   component: UsersComponent, cambiar user detail
+      // },
       {
         path: 'courses',
         loadChildren: () =>
           import('./pages/courses/courses.module').then((m) => m.CoursesModule),
+      },
+      {
+        path: 'inscriptions',
+        loadChildren: () =>
+          import('./pages/inscriptions/inscriptions.module').then(
+            (m) => m.InscriptionsModule
+          ),
       },
       {
         path: '**',

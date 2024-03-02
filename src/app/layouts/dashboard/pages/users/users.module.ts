@@ -8,14 +8,16 @@ import { UsersMockService } from '../../../../core/services/users-mock.services'
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserDetailComponent } from './pages/user-detail/user-detail.component';
 import { UsersRoutingModule } from './users-routing.module';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
-  declarations: [UsersComponent, UserDialogComponent, UserDetailComponent],
+  declarations: [UsersComponent, UserDialogComponent, UserDetailComponent,UserDetailComponent],
   imports: [
     CommonModule,
     SharedModule,
     ReactiveFormsModule,
     UsersRoutingModule,
+    StoreModule.forFeature('users', {}),
   ],
   exports: [UsersComponent],
   providers: [

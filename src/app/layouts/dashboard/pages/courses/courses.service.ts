@@ -6,7 +6,11 @@ import { AlertService } from '../../../../core/services/alert.service';
 import { environment } from '../../../../../environments/environments';
 import { HttpClient } from '@angular/common/http';
 
-@Injectable()
+@Injectable(
+  {
+    providedIn: 'root'
+  }
+)
 export class CoursesService {
   constructor(
     private loadingServices: LoadingService,
@@ -16,7 +20,6 @@ export class CoursesService {
 
   getCourses() {
     this.loadingServices.setLoading(true);
-
     return this.httpClient
       .get<ICourse[]>(`${environment.apiUrl}courses`)
       .pipe(

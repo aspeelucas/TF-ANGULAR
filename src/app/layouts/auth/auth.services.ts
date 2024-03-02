@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { IUsers } from '../dashboard/pages/users/models/users.interface';
 import { Router } from '@angular/router';
 import { AlertService } from '../../core/services/alert.service';
-import { Observable, delay, finalize, map, tap } from 'rxjs';
+import { Observable, catchError, delay, finalize, map, of, tap } from 'rxjs';
 import { LoadingService } from '../../core/services/loading.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environments';
@@ -10,7 +10,7 @@ import { Store } from '@ngrx/store';
 import { authActions } from '../../core/store/auth/actions';
 
 interface ILoginData {
-  email: null| string;
+  email: null | string;
   password: null | string;
 }
 
@@ -18,8 +18,6 @@ interface ILoginData {
   providedIn: 'root',
 })
 export class AuthService {
-  
-
   constructor(
     private router: Router,
     private alertServices: AlertService,
@@ -29,7 +27,6 @@ export class AuthService {
   ) {}
 
   private setAuthUser(user: IUsers): void {
-    
     this.store.dispatch(authActions.setAuthUser({ user }));
     localStorage.setItem('token', user.token);
   }
@@ -78,6 +75,8 @@ export class AuthService {
             return false;
           }
         }),
+        catchError(() => of(false)),
+
         finalize(() => this.loading.setLoading(false))
       );
   }

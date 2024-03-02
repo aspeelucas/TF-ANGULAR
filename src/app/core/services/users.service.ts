@@ -1,15 +1,23 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { IUsers } from '../../layouts/dashboard/pages/users/models/users.interface';
 import { Observable, catchError, delay, mergeMap, of, tap } from 'rxjs';
 import { AlertService } from './alert.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environments';
 import { IPagination } from '../models/pagination';
+import { Store } from '@ngrx/store';
+import { selectAuthUser } from '../store/auth/selectors';
 
 const ROLES_DB: string[] = ['Admin', 'Estudiante'];
 let USERS_DB: IUsers[] = [];
 
-@Injectable()
+@Injectable(
+  {
+    providedIn: 'root'
+  
+  }
+)
+
 export class UsersService {
   constructor(
     private alertServices: AlertService,
@@ -21,6 +29,18 @@ export class UsersService {
   getRoles(): Observable<string[]> {
     return of(ROLES_DB).pipe(delay(1000));
   }
+
+// sdsadas
+
+  getCurrentUser(): Observable<IUsers | null> {
+    const store = inject(Store);
+    return store.select(selectAuthUser);
+  }
+
+
+// dasdad
+
+
 
   getUsers() {
     return this.htttpClient.get<IUsers[]>(`${environment.apiUrl}users`);
@@ -85,5 +105,10 @@ export class UsersService {
           return of([]);
         })
       );
+  };
+
+  getAllStudents():Observable<IUsers[]>{
+    return this.htttpClient.get<IUsers[]>(`${environment.apiUrl}users?role=Estudiante`);
   }
+
 }

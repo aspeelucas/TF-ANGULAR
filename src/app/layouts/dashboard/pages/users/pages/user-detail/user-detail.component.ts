@@ -22,6 +22,7 @@ export class UserDetailComponent {
     this.loadingService.setLoading(true);
     this.usersService.getUserById(this.route.snapshot.params['id']).subscribe({
       next: (findedUser) => {
+        console.log(findedUser);
         if (findedUser) {
           this.dataSource = [findedUser];
         }

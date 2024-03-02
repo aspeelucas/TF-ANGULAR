@@ -1,7 +1,7 @@
 <div><h1 appFontSize>Lista de Usuarios</h1></div>
 <div class="formUserContainer">
   <div class="buttonContainer">
-    <button (click)="onCreateUser()" mat-flat-button>Agregar Usuario</button>
+    <button disabled={{!isAdmin()}} (click)="onCreateUser()" mat-flat-button>Agregar Usuario</button>
   </div>
   <div class="tableBody">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -37,23 +37,23 @@
           {{ user.role }}
         </td>
       </ng-container>
-      <ng-container matColumnDef="password">
+      <ng-container  matColumnDef="password">
         <th class="acctionText" mat-header-cell *matHeaderCellDef>Password</th>
-        <td class="acctionText" mat-cell *matCellDef="let user">
-          {{ user.password }}
+        <td  class="acctionText" mat-cell *matCellDef="let user">
+          {{ user.password | hiddenPassword : isAdmin()}}
         </td>
       </ng-container>
-      <ng-container matColumnDef="actions">
+      <ng-container  matColumnDef="actions">
         <th class="acctionText" mat-header-cell *matHeaderCellDef>Acciones</th>
         <td class="actionButton" mat-cell *matCellDef="let user">
           {{ user.actions }}
-          <button [routerLink]="user.id" mat-icon-button class="buttonEdit">
+          <button  disabled={{!isAdmin()}} [routerLink]="user.id" mat-icon-button class="buttonEdit">
             <mat-icon>visibility</mat-icon>
           </button>
-          <button (click)="onEditUser(user)" class="buttonEdit" mat-icon-button>
+          <button disabled={{!isAdmin()}} (click)="onEditUser(user)" class="buttonEdit" mat-icon-button>
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-icon-button color="warn" (click)="showModalDeleted(user)">
+          <button disabled={{!isAdmin()}} mat-icon-button color="warn" (click)="showModalDeleted(user)">
             <mat-icon>delete</mat-icon>
           </button>
         </td>

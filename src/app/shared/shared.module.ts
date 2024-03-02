@@ -14,15 +14,17 @@ import { MatCardModule } from '@angular/material/card';
 import { ValidationErrorsPipe } from './validation-errors.pipe';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatMenuModule} from '@angular/material/menu';
+import { HiddenPasswordPipe } from './hidden-password.pipe';
 
 @NgModule({
-  declarations: [FullNamePipe, FontSizeDirective, ValidationErrorsPipe],
+  declarations: [FullNamePipe, FontSizeDirective, ValidationErrorsPipe, HiddenPasswordPipe],
   imports: [CommonModule],
   exports: [
     MatButtonModule,
     MatIconModule,
     MatTableModule,
     FullNamePipe,
+    HiddenPasswordPipe,
     FontSizeDirective,
     MatFormFieldModule,
     MatInputModule,

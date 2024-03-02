@@ -92,13 +92,48 @@
       "start": "0111-01-01T03:53:48.000Z",
       "end": "0111-01-01T03:53:48.000Z",
       "price": 5000
+    }
+  ],
+  "inscriptions": [
+    {
+      "id": "1",
+      "userId": "1",
+      "courseId": "2"
     },
     {
-      "id": "67f8",
-      "nameCourse": "Ingles Basico",
-      "start": "2033-01-01T03:00:00.000Z",
-      "end": "4444-01-01T00:00:00.000Z",
-      "price": 3333
+      "id": "2",
+      "userId": "2",
+      "courseId": "2"
+    },
+    {
+      "id": "3",
+      "userId": "3",
+      "courseId": "2"
+    },
+    {
+      "id": "4",
+      "userId": "1",
+      "courseId": "3"
+    },
+    {
+      "id": "5",
+      "userId": "2",
+      "courseId": "3"
+    },
+    {
+      "id": "0c11",
+      "courseId": "2",
+      "userId": "2"
+    },
+    {
+      "id": "d27b",
+      "courseId": "2",
+      "userId": "3"
+    },
+    {
+      "id": "0e0e",
+      "courseId": "2",
+      "userId": "2"
     }
   ]
 }
