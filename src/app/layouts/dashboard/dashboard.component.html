@@ -21,6 +21,14 @@
         <mat-icon
           aria-hidden="false"
           aria-label="Example home icon"
+          fontIcon="record_voice_over"
+        ></mat-icon
+        ><a routerLink="students" routerLinkActive="active">Alumnos</a>
+      </li>
+      <li>
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Example home icon"
           fontIcon="class"
         ></mat-icon
         ><a routerLink="courses" routerLinkActive="active">Cursos</a>
@@ -31,7 +39,9 @@
           aria-label="Example home icon"
           fontIcon="add_to_photos"
         ></mat-icon
-        ><a routerLink="inscriptions" routerLinkActive="active">Inscripciones</a>
+        ><a routerLink="inscriptions" routerLinkActive="active"
+          >Inscripciones</a
+        >
       </li>
       <li>
         <mat-icon
@@ -42,8 +52,6 @@
         ><a (click)="logout()">Cerrar sesion</a>
       </li>
     </ul>
-
-    <!--  -->
   </mat-drawer>
   <div class="">
     <mat-toolbar color="primary" class="navbarContainer">
@@ -84,7 +92,6 @@
     </mat-toolbar>
   </div>
   <div class="tableContainer">
-    <!-- RUTAS -->
     <router-outlet></router-outlet>
   </div>
 </mat-drawer-container>

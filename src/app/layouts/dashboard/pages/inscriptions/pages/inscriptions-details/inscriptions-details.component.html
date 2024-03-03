@@ -1,8 +1,13 @@
+<div class="buttonReturn">
+  <button routerLink="/dashboard/inscriptions" mat-flat-button>
+    <mat-icon>arrow_back_ios</mat-icon>
+    Volver
+  </button>
+</div>
 <h1 appFontSizeDirective>Detalles de inscripciones</h1>
 <div class="formContainer">
-  
   <div class="tableBodyCursos">
-    <table [dataSource]="dataSource" mat-table  class="mat-elevation-z8">
+    <table [dataSource]="dataSource" mat-table class="mat-elevation-z8">
       <ng-container matColumnDef="id">
         <th class="acctionText" mat-header-cell *matHeaderCellDef>ID</th>
         <td class="acctionText" mat-cell *matCellDef="let element">
@@ -15,42 +20,51 @@
           Nombre y Apellido
         </th>
         <td class="acctionText" mat-cell *matCellDef="let element">
-          {{ element.user | fullName}} 
+          {{ element.student | fullName }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="email">
         <th class="acctionText" mat-header-cell *matHeaderCellDef>Email</th>
         <td class="acctionText" mat-cell *matCellDef="let element">
-          {{ element.user.email }}
+          {{ element.student.email }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="phone">
         <th class="acctionText" mat-header-cell *matHeaderCellDef>Telefono</th>
         <td class="acctionText" mat-cell *matCellDef="let element">
-          {{ element.user.phone }}
+          {{ element.student.phone }}
         </td>
       </ng-container>
       <ng-container matColumnDef="course">
         <th class="acctionText" mat-header-cell *matHeaderCellDef>Curso</th>
         <td class="acctionText" mat-cell *matCellDef="let element">
-            {{ element.course.nameCourse}} </td>
+          {{ element.course.nameCourse }}
+        </td>
       </ng-container>
       <ng-container matColumnDef="start">
-        <th class="acctionText" mat-header-cell *matHeaderCellDef>Fecha de Inicio</th>
+        <th class="acctionText" mat-header-cell *matHeaderCellDef>
+          Fecha de Inicio
+        </th>
         <td class="acctionText" mat-cell *matCellDef="let element">
-            {{ element.course.start | date : "dd/MM/YYYY"}} </td>
+          {{ element.course.start | date : "dd/MM/YYYY" }}
+        </td>
       </ng-container>
       <ng-container matColumnDef="end">
-        <th class="acctionText" mat-header-cell *matHeaderCellDef>Fecha de Finalizacion</th>
+        <th class="acctionText" mat-header-cell *matHeaderCellDef>
+          Fecha de Finalizacion
+        </th>
         <td class="acctionText" mat-cell *matCellDef="let element">
-          {{ element.course.end | date : "dd/MM/YYYY"}} </td>
+          {{ element.course.end | date : "dd/MM/YYYY" }}
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="price">
         <th class="acctionText" mat-header-cell *matHeaderCellDef>Precio</th>
-        <td class="acctionText" mat-cell *matCellDef="let element">$ {{element.course.price}} </td>
+        <td class="acctionText" mat-cell *matCellDef="let element">
+          $ {{ element.course.price }}
+        </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>

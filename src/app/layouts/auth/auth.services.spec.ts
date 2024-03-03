@@ -38,11 +38,11 @@ describe('Pruebas del AuthServices', () => {
       .login({ email: 'testemail@gmail', password: 'test' })
       .subscribe({
         next: (user) => {
-          expect(authService.authUser).toBeTruthy();
-          expect(authService.authUser).toEqual(MOCK_RESPONSE[0]);
+          expect(authService.login).toBeTruthy();
+          expect(authService.login).toEqual(MOCK_RESPONSE[0]);
         },
       });
-    authService.authUser;
+    authService.login;
     httpControler
       .expectOne({
         url: 'http://localhost:3000/users?email=testemail@gmail&password=test',

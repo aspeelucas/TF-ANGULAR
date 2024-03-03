@@ -1,0 +1,104 @@
+<div class="buttonReturn">
+  <button routerLink="/dashboard/students" mat-flat-button>
+    <mat-icon>arrow_back_ios</mat-icon>
+    Volver
+  </button>
+</div>
+<h1>Detalle de Alumno</h1>
+<div class="formUserContainer">
+  <div class="tableBody">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <th class="acctionText" mat-header-cell *matHeaderCellDef>ID</th>
+        <td class="acctionText" mat-cell *matCellDef="let user">
+          {{ user.id }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="fullName">
+        <th class="acctionText" mat-header-cell *matHeaderCellDef>
+          Nombre y Apellido
+        </th>
+        <td class="acctionText" mat-cell *matCellDef="let user">
+          {{ user | fullName }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="email">
+        <th class="acctionText" mat-header-cell *matHeaderCellDef>Email</th>
+        <td class="acctionText" mat-cell *matCellDef="let user">
+          {{ user.email }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="phone">
+        <th class="acctionText" mat-header-cell *matHeaderCellDef>Telefono</th>
+        <td class="acctionText" mat-cell *matCellDef="let user">
+          {{ user.phone }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="role">
+        <th class="acctionText" mat-header-cell *matHeaderCellDef>Rol</th>
+        <td class="acctionText" mat-cell *matCellDef="let user">
+          {{ user.role }}
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+
+  <!--  -->
+
+  <h2>Listado de cursos inscriptos</h2>
+  <div class="tableBody">
+    <table mat-table [dataSource]="dataSourceCourses" class="mat-elevation-z8">
+      <ng-container matColumnDef="id2">
+        <th class="acctionText" mat-header-cell *matHeaderCellDef>ID Curso</th>
+        <td mat-cell class="acctionText" *matCellDef="let element">
+          {{ element.id }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <th class="acctionText" mat-header-cell *matHeaderCellDef>Curso</th>
+        <td mat-cell class="acctionText" *matCellDef="let element">
+          {{ element.course.nameCourse }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="start">
+        <th class="acctionText" mat-header-cell *matHeaderCellDef>
+          Fecha de inicio
+        </th>
+        <td mat-cell class="acctionText" *matCellDef="let element">
+          {{ element.course.start | date : "dd/MM/YYYY" }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="end">
+        <th class="acctionText" mat-header-cell *matHeaderCellDef>
+          Fecha de finalizacion
+        </th>
+        <td mat-cell class="acctionText" *matCellDef="let element">
+          {{ element.course.end | date : "dd/MM/YYYY" }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="price">
+        <th class="acctionText" mat-header-cell *matHeaderCellDef>Precio</th>
+        <td mat-cell class="acctionText" *matCellDef="let element">
+          $ {{ element.course.price }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <th class="acctionText" mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td class="actionButton" mat-cell *matCellDef="let user">
+          {{ user.actions }}
+          <button
+            (click)="showModalDeleted(user.id)"
+            mat-icon-button
+            color="warn"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsCourses"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsCourses"></tr>
+    </table>
+  </div>
+</div>

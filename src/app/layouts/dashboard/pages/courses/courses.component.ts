@@ -4,6 +4,9 @@ import { ICourse } from './models/course.model';
 import Swal from 'sweetalert2';
 import { MatDialog } from '@angular/material/dialog';
 import { CoursesDialogComponent } from './components/courses-dialog/courses-dialog.component';
+import { Store } from '@ngrx/store';
+import { selectAuthUser } from '../../../../core/store/auth/selectors';
+import { IUsers } from '../users/models/users.interface';
 
 @Component({
   selector: 'app-courses',
@@ -20,11 +23,14 @@ export class CoursesComponent {
     'actions',
   ];
   courses: ICourse[] = [];
+  currentUser: IUsers | null = null;
 
   constructor(
     private coursesService: CoursesService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private storeServices: Store
   ) {
+    this.getCurrentUser();
     this.coursesService.getCourses().subscribe({
       next: (courses) => {
         this.courses = courses;
@@ -74,6 +80,19 @@ export class CoursesComponent {
         this.courses = courses;
       },
     });
+  }
+
+  getCurrentUser(): void {
+    this.storeServices.select(selectAuthUser).subscribe({
+      next: (user) => {
+        console.log(user);
+        this.currentUser = user;
+      },
+    });
+  }
+
+  isAdmin(): boolean {
+    return this.currentUser?.role === 'Admin';
   }
 
   showModalDeleted(ev: ICourse): void {

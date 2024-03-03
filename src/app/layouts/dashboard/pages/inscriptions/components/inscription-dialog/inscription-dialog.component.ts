@@ -1,13 +1,21 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { InscriptionsActions } from '../../store/inscriptions.actions';
-import { UsersService } from '../../../../../../core/services/users.service';
 import { Observable } from 'rxjs';
-import { IUsers } from '../../../users/models/users.interface';
-import { selectCourses, selectStudents } from '../../store/inscriptions.selectors';
+import {
+  selectCourses,
+  selectStudents,
+} from '../../store/inscriptions.selectors';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ICourse } from '../../../courses/models/course.model';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
+import { IStudent } from '../../../students/models/student.model';
+import { AlertService } from '../../../../../../core/services/alert.service';
 
 @Component({
   selector: 'app-inscription-dialog',
@@ -15,24 +23,25 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrl: './inscription-dialog.component.scss',
 })
 export class InscriptionDialogComponent {
-
-  students$: Observable<IUsers[]>;
+  students$: Observable<IStudent[]>;
   courses$: Observable<ICourse[]>;
 
   inscriptionForm: FormGroup;
 
-  constructor(private store: Store,private dialogRef: MatDialogRef<InscriptionDialogComponent>,private form :FormBuilder) {
-    this.inscriptionForm= this.form.group({
-      courseId: form.control('',Validators.required),
-      userId: form.control('',Validators.required),
-     
-    })
+  constructor(
+    private store: Store,
+    private dialogRef: MatDialogRef<InscriptionDialogComponent>,
+    private form: FormBuilder,
+    private alertServices: AlertService
+  ) {
+    this.inscriptionForm = this.form.group({
+      courseId: form.control('', Validators.required),
+      studentId: form.control('', Validators.required),
+    });
     this.store.dispatch(InscriptionsActions.loadStudent());
     this.store.dispatch(InscriptionsActions.loadCourses());
     this.students$ = this.store.select(selectStudents);
     this.courses$ = this.store.select(selectCourses);
-
-
   }
 
   onNoClick(): void {
@@ -40,15 +49,26 @@ export class InscriptionDialogComponent {
   }
 
   onSubmit() {
-   console.log(this.inscriptionForm.value);
-   if(this.inscriptionForm.invalid)
-    {
+    console.log(this.inscriptionForm.value);
+    if (this.inscriptionForm.invalid) {
       this.inscriptionForm.markAllAsTouched();
-    }
-    else{
-      this.store.dispatch(InscriptionsActions.createInscription({data: this.inscriptionForm.value}));
+      this.alertServices.showAlert({
+        title: 'Error',
+        text: 'Por favor, completa el formulario',
+        icon: 'error',
+        confirmButtonText: 'Aceptar',
+      });
+    } else {
+      this.store.dispatch(
+        InscriptionsActions.createInscription({
+          data: this.inscriptionForm.value,
+        })
+      );
       this.dialogRef.close();
     }
   }
 
+  getErrorMessage(field: string): ValidationErrors | null {
+    return this.inscriptionForm.get(field)?.errors || null;
+  }
 }

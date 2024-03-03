@@ -35,14 +35,13 @@ export class UsersMockService {
     return of(ROLES_DB).pipe(delay(1000));
   }
 
-// dadasd
+ 
   getCurrentUser(): Observable<IUsers | null> {
     const store = inject(Store);
     return store.select(selectAuthUser);
   }
 
-  // dasdasd
-
+ 
 
   getUsers() {
     return this.htttpClient
@@ -150,10 +149,5 @@ export class UsersMockService {
           return of([]);
         })
       );
-  };
-
-  getAllStudents():Observable<IUsers[]>{
-    return this.htttpClient.get<IUsers[]>(`${environment.apiUrl}/users?role=Estudiante`);
   }
-
 }

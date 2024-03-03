@@ -17,7 +17,7 @@
       "email": "ptobalda@gmail.com",
       "phone": 123456789,
       "password": "123456",
-      "role": "Estudiante",
+      "role": "Usuario",
       "token": "absdde334"
     },
     {
@@ -27,7 +27,7 @@
       "email": "juanp@gmail.com",
       "phone": 123456789,
       "password": "444a33",
-      "role": "Estudiante",
+      "role": "Usuario",
       "token": "absdde335"
     },
     {
@@ -47,7 +47,7 @@
       "email": "dasdas@gmail.com",
       "phone": 3123123,
       "password": "dasdad",
-      "role": "Estudiante",
+      "role": "Usuario",
       "token": " PQCnU87VT7km4we"
     },
     {
@@ -57,7 +57,7 @@
       "email": "lozada@gmail.com",
       "phone": 12312312,
       "password": "weqeqweq",
-      "role": "Estudiante",
+      "role": "Usuario",
       "token": " rSZ6vpr9hoEAcPW"
     },
     {
@@ -67,8 +67,18 @@
       "email": "das44@gmail.com",
       "phone": 123123,
       "password": "131231",
-      "role": "Estudiante",
+      "role": "Usuario",
       "token": " ORa4nDrEKhy9xlX"
+    },
+    {
+      "id": "ed7f",
+      "firstName": "dasd",
+      "lastName": "dasda",
+      "email": "dasdas@das",
+      "phone": 1231,
+      "password": "dasd",
+      "role": "Usuario",
+      "token": " cRlArfkmVAuymyq"
     }
   ],
   "courses": [
@@ -94,46 +104,101 @@
       "price": 5000
     }
   ],
-  "inscriptions": [
+  "students": [
     {
-      "id": "1",
-      "userId": "1",
-      "courseId": "2"
+      "firstName": "Pepito",
+      "lastName": "Perez",
+      "email": "pepito2311@gmail.com",
+      "phone": 123123123,
+      "role": "Alumno",
+      "id": "2"
     },
     {
+      "id": "1",
+      "firstName": "Juan",
+      "lastName": "Perez",
+      "email": "juan231@gmail.com",
+      "phone": 424242,
+      "role": "Alumno"
+    },
+    {
+      "id": "3a34",
+      "firstName": "Roberto",
+      "lastName": "Aguas",
+      "email": "aguas@gmail.com",
+      "phone": 2313,
+      "role": "Alumno"
+    },
+    {
+      "id": "3bf7",
+      "firstName": "Jorge",
+      "lastName": "Aze",
+      "email": "jaz@gmail.com",
+      "phone": 23232,
+      "role": "Alumno"
+    },
+    {
+      "id": "19a9",
+      "firstName": "Jose",
+      "lastName": "Indi",
+      "email": "indi@gmail.com",
+      "phone": 31231,
+      "role": "Alumno"
+    },
+    {
+      "id": "a741",
+      "firstName": "Esteban",
+      "lastName": "Alvarez",
+      "email": "alvarez@gmail.com",
+      "phone": 213123,
+      "role": "Alumno"
+    }
+  ],
+  "inscriptions": [
+    {
       "id": "2",
-      "userId": "2",
+      "studentId": "2",
       "courseId": "2"
     },
     {
       "id": "3",
-      "userId": "3",
-      "courseId": "2"
-    },
-    {
-      "id": "4",
-      "userId": "1",
+      "studentId": "2",
       "courseId": "3"
     },
     {
-      "id": "5",
-      "userId": "2",
-      "courseId": "3"
+      "id": "6b99",
+      "courseId": "1",
+      "studentId": "3a34"
     },
     {
-      "id": "0c11",
-      "courseId": "2",
-      "userId": "2"
+      "id": "50b0",
+      "courseId": "3",
+      "studentId": "3bf7"
     },
     {
-      "id": "d27b",
-      "courseId": "2",
-      "userId": "3"
+      "id": "3ef9",
+      "courseId": "3",
+      "studentId": "19a9"
     },
     {
-      "id": "0e0e",
+      "id": "df70",
       "courseId": "2",
-      "userId": "2"
+      "studentId": "1"
+    },
+    {
+      "id": "87d7",
+      "courseId": "2",
+      "studentId": "3a34"
+    },
+    {
+      "id": "83a4",
+      "courseId": "1",
+      "studentId": "3bf7"
+    },
+    {
+      "id": "09a8",
+      "courseId": "1",
+      "studentId": "1"
     }
   ]
 }

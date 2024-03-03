@@ -10,7 +10,6 @@ const routes: Routes = [
     pathMatch: 'full',
   },
 
-  // RUTA PARA DASHBOARD
   {
     path: 'dashboard',
     canActivate: [authGuard],
@@ -20,14 +19,13 @@ const routes: Routes = [
         (m) => m.DashboardModule
       ),
   },
-  // RUTA PARA LOGIN
+
   {
     path: 'auth',
     loadChildren: () =>
       import('./layouts/auth/auth.module').then((m) => m.AuthModule),
   },
 
-  // RUTA PARA 404
   {
     path: '404',
     loadChildren: () =>
@@ -35,7 +33,7 @@ const routes: Routes = [
         (m) => m.NotFoundModule
       ),
   },
-  // RUTA SI NO EXISTE NINGUNA DE LAS ANTERIORES
+
   {
     path: '**',
     redirectTo: '/404',

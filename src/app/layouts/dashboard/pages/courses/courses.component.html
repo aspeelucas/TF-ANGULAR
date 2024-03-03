@@ -1,7 +1,19 @@
+<div class="buttonReturn">
+  <button routerLink="/dashboard/home" mat-flat-button>
+    <mat-icon>arrow_back_ios</mat-icon>
+    Volver
+  </button>
+</div>
 <h1 appFontSizeDirective>Gestor de Cursos</h1>
 <div class="formContainer">
   <div class="buttonContainer">
-    <button mat-flat-button (click)="onCreateCourse()">Agregar Curso</button>
+    <button
+      disabled="{{ !isAdmin() }}"
+      mat-flat-button
+      (click)="onCreateCourse()"
+    >
+      Agregar Curso
+    </button>
   </div>
   <div class="tableBodyCursos">
     <table mat-table [dataSource]="courses" class="mat-elevation-z8">
@@ -48,6 +60,15 @@
         <td class="actionButton" mat-cell *matCellDef="let element">
           {{ element.actions }}
           <button
+            disabled="{{ !isAdmin() }}"
+            [routerLink]="element.id"
+            mat-icon-button
+            class="buttonEdit"
+          >
+            <mat-icon>visibility</mat-icon>
+          </button>
+          <button
+            disabled="{{ !isAdmin() }}"
             class="buttonEdit"
             mat-icon-button
             (click)="onEditCourse(element)"
@@ -55,6 +76,7 @@
             <mat-icon>edit</mat-icon>
           </button>
           <button
+            disabled="{{ !isAdmin() }}"
             mat-icon-button
             color="warn"
             (click)="showModalDeleted(element)"

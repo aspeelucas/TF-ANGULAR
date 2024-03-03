@@ -12,11 +12,14 @@ import { selectAuthUser } from '../../core/store/auth/selectors';
   styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent {
+  authUser$: Observable<IUsers | null>;
 
-  authUser$ : Observable<IUsers | null>;
-
-  constructor(private router: Router, private authService: AuthService, private store: Store) {
-   this.authUser$ = this.store.select(selectAuthUser);
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private store: Store
+  ) {
+    this.authUser$ = this.store.select(selectAuthUser);
   }
 
   logout() {

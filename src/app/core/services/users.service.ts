@@ -11,13 +11,9 @@ import { selectAuthUser } from '../store/auth/selectors';
 const ROLES_DB: string[] = ['Admin', 'Estudiante'];
 let USERS_DB: IUsers[] = [];
 
-@Injectable(
-  {
-    providedIn: 'root'
-  
-  }
-)
-
+@Injectable({
+  providedIn: 'root',
+})
 export class UsersService {
   constructor(
     private alertServices: AlertService,
@@ -30,17 +26,14 @@ export class UsersService {
     return of(ROLES_DB).pipe(delay(1000));
   }
 
-// sdsadas
+  
 
   getCurrentUser(): Observable<IUsers | null> {
     const store = inject(Store);
     return store.select(selectAuthUser);
   }
 
-
-// dasdad
-
-
+ 
 
   getUsers() {
     return this.htttpClient.get<IUsers[]>(`${environment.apiUrl}users`);
@@ -105,10 +98,5 @@ export class UsersService {
           return of([]);
         })
       );
-  };
-
-  getAllStudents():Observable<IUsers[]>{
-    return this.htttpClient.get<IUsers[]>(`${environment.apiUrl}users?role=Estudiante`);
   }
-
 }

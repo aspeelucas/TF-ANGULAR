@@ -23,10 +23,10 @@ export class InscriptionsService {
     this.loadingServices.setLoading(true);
     return this.http
       .get<IInscription[]>(
-        `${environment.apiUrl}inscriptions?_embed=user&_embed=course`
+        `${environment.apiUrl}inscriptions?_embed=student&_embed=course`
       )
       .pipe(
-        delay(1000),
+        delay(0.005),
         finalize(() => this.loadingServices.setLoading(false))
       )
       .pipe(
@@ -41,17 +41,39 @@ export class InscriptionsService {
   }
 
   createInscription(data: ICreateInscriptionData) {
-    return this.http.post<IInscription>(
-      `${environment.apiUrl}inscriptions`,
-      data
-    );
+    return this.http
+      .post<IInscription>(`${environment.apiUrl}inscriptions`, data)
+      .pipe(
+        tap(() =>
+          this.alertServices.showSuccess(
+            'Inscripcion creada',
+            'La Inscripcion fue creada correctamente'
+          )
+        )
+      );
   }
 
   getInscriptionById(id: number) {
     return this.http.get<IInscription>(
-      `${environment.apiUrl}inscriptions/${id}?_embed=user&_embed=course`
-    )
+      `${environment.apiUrl}inscriptions/${id}?_embed=student&_embed=course`
+    );
   }
+
+  // obtener inscripciones por id de estudiante
+  getInscriptionByStudentId(id: number) {
+    return this.http.get<IInscription[]>(
+      `${environment.apiUrl}inscriptions?studentId=${id}&_embed=student&_embed=course`
+    );
+  }
+
+  // obtener inscripciones por id de curso
+  getInscriptionByCourseId(id: number) {
+    return this.http.get<IInscription[]>(
+      `${environment.apiUrl}inscriptions?courseId=${id}&_embed=student&_embed=course`
+    );
+  }
+
+  //
 
   deleteInscription(id: number) {
     return this.http

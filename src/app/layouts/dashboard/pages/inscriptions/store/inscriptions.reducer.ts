@@ -1,14 +1,14 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { InscriptionsActions } from './inscriptions.actions';
 import { IInscription } from '../models/inscription.intarface';
-import { IUsers } from '../../users/models/users.interface';
 import { ICourse } from '../../courses/models/course.model';
+import { IStudent } from '../../students/models/student.model';
 
 export const inscriptionsFeatureKey = 'inscriptions';
 
 export interface State {
   inscriptions: IInscription[];
-  students: IUsers[];
+  students: IStudent[];
   courses: ICourse[];
   loading: boolean;
   error: unknown;

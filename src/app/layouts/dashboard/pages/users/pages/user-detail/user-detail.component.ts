@@ -10,8 +10,14 @@ import { IUsers } from '../../models/users.interface';
   styleUrl: './user-detail.component.scss',
 })
 export class UserDetailComponent {
-  displayedColumns: string[] = ['id', 'fullName', 'email', 'phone', 'role'];
-  displayedColumnsCourses: string[] = ['id2', 'name', 'start', 'end', 'price'];
+  displayedColumns: string[] = [
+    'id',
+    'fullName',
+    'email',
+    'phone',
+    'role',
+    'password',
+  ];
   dataSource: IUsers[] = [];
 
   constructor(

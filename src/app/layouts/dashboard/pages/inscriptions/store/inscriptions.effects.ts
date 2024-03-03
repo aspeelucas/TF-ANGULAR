@@ -1,11 +1,12 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, concatMap } from 'rxjs/operators';
-import { Observable, EMPTY, of } from 'rxjs';
+import { of } from 'rxjs';
 import { InscriptionsActions } from './inscriptions.actions';
 import { InscriptionsService } from '../inscriptions.service';
-import { UsersService } from '../../../../../core/services/users.service';
+
 import { CoursesService } from '../../courses/courses.service';
+import { StudentsService } from '../../students/students.services';
 
 @Injectable()
 export class InscriptionsEffects {
@@ -27,11 +28,11 @@ export class InscriptionsEffects {
     return this.actions$.pipe(
       ofType(InscriptionsActions.loadStudent),
       concatMap(() =>
-        this.usersService.getAllStudents().pipe(
+        this.studentsService.getAllStudents().pipe(
           map((resp) => InscriptionsActions.loadStudentSuccess({ data: resp })),
-          catchError((error) =>
-            of(InscriptionsActions.loadStudentFailure({ error }))
-          )
+          catchError((error) => {
+            return of(InscriptionsActions.loadStudentFailure({ error }));
+          })
         )
       )
     );
@@ -67,11 +68,14 @@ export class InscriptionsEffects {
     );
   });
 
-  createInscriptionSuccess$ = createEffect
-  (() => {
+  createInscriptionSuccess$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(InscriptionsActions.createInscriptionSuccess),
-      concatMap(() => [InscriptionsActions.loadInscriptions(),InscriptionsActions.loadStudent(),InscriptionsActions.loadCourses()])
+      concatMap(() => [
+        InscriptionsActions.loadInscriptions(),
+        InscriptionsActions.loadStudent(),
+        InscriptionsActions.loadCourses(),
+      ])
     );
   });
 
@@ -89,13 +93,11 @@ export class InscriptionsEffects {
     );
   });
 
-
- 
-
   constructor(
     private actions$: Actions,
     private inscriptionServices: InscriptionsService,
-    private usersService: UsersService,
+
+    private studentsService: StudentsService,
     private coursesService: CoursesService
   ) {}
 }

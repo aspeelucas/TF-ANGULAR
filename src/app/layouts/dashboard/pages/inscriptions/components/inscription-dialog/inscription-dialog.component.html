@@ -1,28 +1,43 @@
 <div class="formCointainerCourses">
-    <h1 mat-dialog-title>Inscribir alumno</h1>
-    <div class="formCourses" mat-dialog-content>
-      <form [formGroup]="inscriptionForm" >
-        <mat-form-field>
-          <mat-label>Estudiante</mat-label>
-          <mat-select formControlName="userId">
-            <mat-option [value]="student.id" *ngFor="let student of students$ | async ">
-              {{student| fullName}} 
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Curso</mat-label>
-          <mat-select  formControlName="courseId">
-            <mat-option [value]="course.id" *ngFor="let course of courses$ | async ">
-              {{course.nameCourse}} 
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </form>
-    </div>
-    <div class="buttonDialog" mat-dialog-actions>
-      <button mat-flat-button (click)="onNoClick()" >Cancelar</button>
-      <button mat-flat-button (click)="onSubmit()" >Guardar</button>
-    </div>
+  <h1 mat-dialog-title>Inscribir alumno</h1>
+  <div class="formCourses" mat-dialog-content>
+    <form [formGroup]="inscriptionForm">
+      <mat-form-field>
+        <mat-label>Alumno</mat-label>
+        <mat-select formControlName="studentId">
+          <mat-option
+            [value]="student.id"
+            *ngFor="let student of students$ | async"
+          >
+            {{ student | fullName }}
+          </mat-option>
+        </mat-select>
+        <mat-error>
+          <span *ngIf="inscriptionForm.get('studentId')?.hasError('required')"
+            >Debes selecionar un Alumno</span
+          >
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Curso</mat-label>
+        <mat-select formControlName="courseId">
+          <mat-option
+            [value]="course.id"
+            *ngFor="let course of courses$ | async"
+          >
+            {{ course.nameCourse }}
+          </mat-option>
+        </mat-select>
+        <mat-error>
+          <span *ngIf="inscriptionForm.get('courseId')?.hasError('required')"
+            >Debes selecionar un Curso</span
+          >
+        </mat-error>
+      </mat-form-field>
+    </form>
   </div>
-  
+  <div class="buttonDialog" mat-dialog-actions>
+    <button mat-flat-button (click)="onNoClick()">Cancelar</button>
+    <button mat-flat-button (click)="onSubmit()">Guardar</button>
+  </div>
+</div>

@@ -4,7 +4,7 @@
     Volver
   </button>
 </div>
-<div><h1 appFontSize>Lista de Usuarios</h1></div>
+<div><h1 appFontSize>Lista de Alumnos</h1></div>
 <div class="formUserContainer">
   <div class="buttonContainer">
     <button
@@ -12,7 +12,7 @@
       (click)="onCreateUser()"
       mat-flat-button
     >
-      Agregar Usuario
+      Agregar Alumno
     </button>
   </div>
   <div class="tableBody">
@@ -49,12 +49,7 @@
           {{ user.role }}
         </td>
       </ng-container>
-      <ng-container matColumnDef="password">
-        <th class="acctionText" mat-header-cell *matHeaderCellDef>Password</th>
-        <td class="acctionText" mat-cell *matCellDef="let user">
-          {{ user.password | hiddenPassword : isAdmin() }}
-        </td>
-      </ng-container>
+
       <ng-container matColumnDef="actions">
         <th class="acctionText" mat-header-cell *matHeaderCellDef>Acciones</th>
         <td class="actionButton" mat-cell *matCellDef="let user">
@@ -77,9 +72,9 @@
           </button>
           <button
             disabled="{{ !isAdmin() }}"
+            (click)="showModalDeleted(user)"
             mat-icon-button
             color="warn"
-            (click)="showModalDeleted(user)"
           >
             <mat-icon>delete</mat-icon>
           </button>

@@ -6,11 +6,9 @@ import { AlertService } from '../../../../core/services/alert.service';
 import { environment } from '../../../../../environments/environments';
 import { HttpClient } from '@angular/common/http';
 
-@Injectable(
-  {
-    providedIn: 'root'
-  }
-)
+@Injectable({
+  providedIn: 'root',
+})
 export class CoursesService {
   constructor(
     private loadingServices: LoadingService,
@@ -52,6 +50,19 @@ export class CoursesService {
         catchError((error) => {
           this.alertServices.showError('Error', 'Error al eliminar el curso');
           return of([]);
+        })
+      );
+  }
+
+  getCourseById(id: number) {
+    this.loadingServices.setLoading(true);
+    return this.httpClient
+      .get<ICourse>(`${environment.apiUrl}courses/${id}`)
+      .pipe(finalize(() => this.loadingServices.setLoading(false)))
+      .pipe(
+        catchError((error) => {
+          this.alertServices.showError('Error', 'Error al obtener el curso');
+          return of(undefined);
         })
       );
   }

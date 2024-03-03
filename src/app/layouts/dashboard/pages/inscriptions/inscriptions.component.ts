@@ -28,12 +28,12 @@ export class InscriptionsComponent {
 
   constructor(private store: Store, private dialog: MatDialog) {
     this.store.dispatch(InscriptionsActions.loadInscriptions());
-    this.inscriptions$ = this.store.select(selectInscriptions),
-    this.inscriptions$.subscribe({
-      next: (inscriptions) => {
-        this.dataSource = inscriptions;
-      },
-    });
+    (this.inscriptions$ = this.store.select(selectInscriptions)),
+      this.inscriptions$.subscribe({
+        next: (inscriptions) => {
+          this.dataSource = inscriptions;
+        },
+      });
   }
 
   openInscriptionDialog(): void {
@@ -44,8 +44,7 @@ export class InscriptionsComponent {
     this.store.dispatch(InscriptionsActions.deleteInscription({ id }));
   }
 
-
-showModalDeleted( ev : number ): void {
+  showModalDeleted(ev: number): void {
     Swal.fire({
       title: 'Estas seguro que deseas eliminar esta inscripcion?',
       text: 'Los cambios no se podran revertirse!',
@@ -60,7 +59,4 @@ showModalDeleted( ev : number ): void {
       }
     });
   }
- 
-  
-  
 }

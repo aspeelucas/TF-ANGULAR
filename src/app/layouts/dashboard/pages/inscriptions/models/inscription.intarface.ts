@@ -1,17 +1,16 @@
-import { ICON_REGISTRY_PROVIDER } from "@angular/material/icon";
-import { ICourse } from "../../courses/models/course.model";
-import { IUsers } from "../../users/models/users.interface";
+import { ICourse } from '../../courses/models/course.model';
+
+import { IStudent } from '../../students/models/student.model';
 
 export interface IInscription {
-    id: string | number;
-    userId: string | number;
-    courseId: string | number;
-    user?: IUsers;
-    course?: ICourse;
+  id: string | number;
+  studentId: string | number;
+  courseId: string | number;
+  student?: IStudent;
+  course?: ICourse;
 }
 
-export interface ICreateInscriptionData{
-    userId: string | number;
-    courseId: string | number;
-    
+export interface ICreateInscriptionData {
+  studentId: string | number | null;
+  courseId: string | number | null;
 }

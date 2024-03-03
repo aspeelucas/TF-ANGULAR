@@ -1,42 +1,39 @@
-import { Component, OnInit } from '@angular/core';
-import { IUsers } from './models/users.interface';
-import { UsersService } from '../../../../core/services/users.service';
+import { Component } from '@angular/core';
+import { IStudent } from './models/student.model';
+import { StudentsService } from './students.services';
 import { LoadingService } from '../../../../core/services/loading.service';
-import { forkJoin } from 'rxjs';
-import Swal from 'sweetalert2';
 import { MatDialog } from '@angular/material/dialog';
-import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
-import { PageEvent } from '@angular/material/paginator';
 import { Store } from '@ngrx/store';
+import { forkJoin } from 'rxjs';
+import { PageEvent } from '@angular/material/paginator';
+import Swal from 'sweetalert2';
+import { StudentDialogComponent } from './components/student-dialog/student-dialog.component';
+import { IUsers } from '../users/models/users.interface';
 import { selectAuthUser } from '../../../../core/store/auth/selectors';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrl: './users.component.scss',
+  selector: 'app-students',
+  templateUrl: './students.component.html',
+  styleUrl: './students.component.scss',
 })
-export class UsersComponent implements OnInit {
-  panelOpenState = false;
+export class StudentsComponent {
   displayedColumns: string[] = [
     'id',
     'fullName',
     'email',
     'phone',
     'role',
-    'password',
     'actions',
   ];
-  dataSource: IUsers[] = [];
-  roles: string[] = [];
+  dataSource: IStudent[] = [];
   loading = false;
-  currentUser: IUsers | null = null;
-
   totalItemsPage = 0;
   pageSize = 5;
   currentPage = 1;
+  currentUser: IUsers | null = null;
 
   constructor(
-    private usersService: UsersService,
+    private studentsService: StudentsService,
     private loadingService: LoadingService,
     private dialog: MatDialog,
     private storeServices: Store
@@ -50,13 +47,10 @@ export class UsersComponent implements OnInit {
   getPageData() {
     this.loadingService.setLoading(true);
 
-    forkJoin([
-      this.usersService.getRoles(),
-      this.usersService.paginate(this.currentPage),
-    ]).subscribe({
+    forkJoin([this.studentsService.paginate(this.currentPage)]).subscribe({
       next: (value) => {
-        this.roles = value[0];
-        const paginationResult = value[1];
+        const paginationResult = value[0];
+        console.log(paginationResult);
         this.totalItemsPage = paginationResult.items;
         this.dataSource = paginationResult.data;
       },
@@ -68,7 +62,7 @@ export class UsersComponent implements OnInit {
 
   onPage(ev: PageEvent) {
     this.currentPage = ev.pageIndex + 1;
-    this.usersService.paginate(this.currentPage, ev.pageSize).subscribe({
+    this.studentsService.paginate(this.currentPage, ev.pageSize).subscribe({
       next: (paginationResult) => {
         this.totalItemsPage = paginationResult.items;
         this.dataSource = paginationResult.data;
@@ -77,9 +71,9 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  onDeleteUser(ev: IUsers): void {
+  onDeleteUser(ev: IStudent): void {
     this.loadingService.setLoading(true);
-    this.usersService.deleteUser(ev.id).subscribe({
+    this.studentsService.deleteUser(ev.id).subscribe({
       next: (users) => {
         this.dataSource = [...users];
       },
@@ -92,7 +86,6 @@ export class UsersComponent implements OnInit {
   getCurrentUser(): void {
     this.storeServices.select(selectAuthUser).subscribe({
       next: (user) => {
-        console.log(user);
         this.currentUser = user;
       },
     });
@@ -102,7 +95,7 @@ export class UsersComponent implements OnInit {
     return this.currentUser?.role === 'Admin';
   }
 
-  showModalDeleted(ev: IUsers): void {
+  showModalDeleted(ev: IStudent): void {
     Swal.fire({
       title: 'Estas seguro que deseas eliminar este usuario?',
       text: 'Los cambios no se podran revertirse!',
@@ -118,9 +111,9 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  onUserSubmitted(user: IUsers): void {
+  onUserSubmitted(user: IStudent): void {
     this.loadingService.setLoading(true);
-    this.usersService.createUser(user).subscribe({
+    this.studentsService.createUser(user).subscribe({
       next: (users) => {
         this.dataSource = [...users];
       },
@@ -130,10 +123,9 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  // metodos dialog
   onCreateUser(): void {
     this.dialog
-      .open(UserDialogComponent)
+      .open(StudentDialogComponent)
       .afterClosed()
       .subscribe({
         next: (result) => {
@@ -144,9 +136,9 @@ export class UsersComponent implements OnInit {
       });
   }
 
-  onEditUser(user: IUsers) {
+  onEditUser(user: IStudent) {
     this.dialog
-      .open(UserDialogComponent, {
+      .open(StudentDialogComponent, {
         data: user,
       })
       .afterClosed()
@@ -154,7 +146,7 @@ export class UsersComponent implements OnInit {
         next: (result) => {
           if (result) {
             this.loadingService.setLoading(true);
-            this.usersService.updateUserById(user.id, result).subscribe({
+            this.studentsService.updateUserById(user.id, result).subscribe({
               next: (users) => {
                 this.dataSource = [...users];
               },

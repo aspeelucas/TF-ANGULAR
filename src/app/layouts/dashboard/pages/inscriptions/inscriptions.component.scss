@@ -1,9 +1,4 @@
-.buttonContainer{
-    display: flex;
-    justify-content: center;
-    margin-bottom: 50px;
-    
-}
+
 .buttonContainer button{
     color: white;
     background-color: #6930C3;
@@ -41,13 +36,23 @@ h1{
     margin-bottom: 20px;   
 }
 .actionButton{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
 }
 .acctionText{
     text-align: center;
 }
 .buttonEdit{
     color: #6930C3;
+}
+
+.buttonReturn{
+    margin-left: 30px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: start;
+    margin-bottom: 50px;
+}
+.buttonReturn button{
+    color: white;
+    background-color: #6930C3;
 }

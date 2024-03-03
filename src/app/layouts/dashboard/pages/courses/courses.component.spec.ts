@@ -3,6 +3,7 @@ import { CoursesComponent } from './courses.component';
 import { MockProvider } from 'ng-mocks';
 import { CoursesService } from './courses.service';
 import { of } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 describe('Prueba de courses component', () => {
   let component: CoursesComponent;

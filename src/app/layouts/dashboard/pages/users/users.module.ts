@@ -11,7 +11,12 @@ import { UsersRoutingModule } from './users-routing.module';
 import { StoreModule } from '@ngrx/store';
 
 @NgModule({
-  declarations: [UsersComponent, UserDialogComponent, UserDetailComponent,UserDetailComponent],
+  declarations: [
+    UsersComponent,
+    UserDialogComponent,
+    UserDetailComponent,
+    UserDetailComponent,
+  ],
   imports: [
     CommonModule,
     SharedModule,

@@ -5,8 +5,8 @@ import { InscriptionsDetailsComponent } from './pages/inscriptions-details/inscr
 
 const routes: Routes = [
   {
-    path:'',
-    component: InscriptionsComponent
+    path: '',
+    component: InscriptionsComponent,
   },
   {
     path: ':id',
@@ -16,11 +16,10 @@ const routes: Routes = [
     path: '**',
     redirectTo: '/404',
   },
-
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class InscriptionsRoutingModule { }
+export class InscriptionsRoutingModule {}

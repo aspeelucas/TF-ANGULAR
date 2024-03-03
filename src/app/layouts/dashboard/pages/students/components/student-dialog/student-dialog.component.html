@@ -1,7 +1,7 @@
 <div class="formCointainerUsers">
   <h1 mat-dialog-title>Agregar Usuario</h1>
   <div class="formUsers">
-    <form [formGroup]="userForm">
+    <form [formGroup]="studentForm">
       <mat-form-field>
         <mat-label>Nombre</mat-label>
         <input
@@ -13,7 +13,7 @@
           required
         />
         <mat-error>
-          <span *ngIf="userForm.get('firstName')?.hasError('required')"
+          <span *ngIf="studentForm.get('firstName')?.hasError('required')"
             >El nombre es requerido</span
           >
         </mat-error>
@@ -29,7 +29,7 @@
           required
         />
         <mat-error>
-          <span *ngIf="userForm.get('lastName')?.hasError('required')"
+          <span *ngIf="studentForm.get('lastName')?.hasError('required')"
             >El apellido es requerido</span
           >
         </mat-error>
@@ -44,23 +44,7 @@
           required
         />
         <mat-error>
-          {{ userForm.get("email")?.errors | validationErrors }}
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Contraseña</mat-label>
-        <input
-          type="text"
-          formControlName="password"
-          matInput
-          placeholder="Contraseña"
-          type="text"
-          required
-        />
-        <mat-error>
-          <span *ngIf="userForm.get('password')?.hasError('required')"
-            >La contraseña es requerida</span
-          >
+          {{ studentForm.get("email")?.errors | validationErrors }}
         </mat-error>
       </mat-form-field>
       <mat-form-field>
@@ -73,7 +57,7 @@
           required
         />
         <mat-error>
-          <span *ngIf="userForm.get('phone')?.hasError('required')"
+          <span *ngIf="studentForm.get('phone')?.hasError('required')"
             >El telefono es requerido</span
           >
         </mat-error>
@@ -81,11 +65,10 @@
       <mat-form-field>
         <mat-label>Rol</mat-label>
         <mat-select formControlName="role" required>
-          <mat-option value="Admin">Admin</mat-option>
-          <mat-option value="Usuario">Usuario</mat-option>
+          <mat-option value="Alumno">Alumno</mat-option>
         </mat-select>
         <mat-error>
-          <span *ngIf="userForm.get('role')?.hasError('required')"
+          <span *ngIf="studentForm.get('role')?.hasError('required')"
             >El rol es requerido</span
           >
         </mat-error>

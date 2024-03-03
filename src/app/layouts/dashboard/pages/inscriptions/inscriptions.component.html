@@ -1,3 +1,9 @@
+<div class="buttonReturn">
+  <button routerLink="/dashboard/home" mat-flat-button>
+    <mat-icon>arrow_back_ios</mat-icon>
+    Volver
+  </button>
+</div>
 <h1 appFontSizeDirective>Gestor de Inscripciones</h1>
 <div class="formContainer">
   <div class="buttonContainer">
@@ -19,43 +25,47 @@
           Nombre y Apellido
         </th>
         <td class="acctionText" mat-cell *matCellDef="let element">
-          {{ element.user | fullName}} 
+          {{ element.student | fullName }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="email">
         <th class="acctionText" mat-header-cell *matHeaderCellDef>Email</th>
         <td class="acctionText" mat-cell *matCellDef="let element">
-          {{ element.user.email }}
+          {{ element.student.email }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="phone">
         <th class="acctionText" mat-header-cell *matHeaderCellDef>Telefono</th>
         <td class="acctionText" mat-cell *matCellDef="let element">
-          {{ element.user.phone }}
+          {{ element.student.phone }}
         </td>
       </ng-container>
       <ng-container matColumnDef="courseName">
         <th class="acctionText" mat-header-cell *matHeaderCellDef>Curso</th>
         <td class="acctionText" mat-cell *matCellDef="let element">
-            {{ element.course.nameCourse}} </td>
+          {{ element.course.nameCourse }}
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="price">
         <th class="acctionText" mat-header-cell *matHeaderCellDef>Precio</th>
-        <td class="acctionText" mat-cell *matCellDef="let element">$ {{element.course.price}} </td>
+        <td class="acctionText" mat-cell *matCellDef="let element">
+          $ {{ element.course.price }}
+        </td>
       </ng-container>
       <ng-container matColumnDef="actions">
         <th class="acctionText" mat-header-cell *matHeaderCellDef>Acciones</th>
         <td class="actionButton" mat-cell *matCellDef="let element">
-          <button   [routerLink]="element.id" mat-icon-button class="buttonEdit">
+          <button [routerLink]="element.id" mat-icon-button class="buttonEdit">
             <mat-icon>visibility</mat-icon>
           </button>
-          <button  class="buttonEdit" mat-icon-button>
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button (click)="showModalDeleted(element.id)" mat-icon-button color="warn">
+          <button
+            (click)="showModalDeleted(element.id)"
+            mat-icon-button
+            color="warn"
+          >
             <mat-icon>delete</mat-icon>
           </button>
         </td>
@@ -66,4 +76,3 @@
     </table>
   </div>
 </div>
-<pre>{{dataSource | json}}</pre>
