@@ -1,27 +1,68 @@
-# TpFinalAngular
+# Proyecto Final del curso de Angular.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.10.
+Mi nombre es Lucas Aspee .
 
-## Development server
+Este es mi proyecto final del curso de Angular para CoderHouse.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Se trata de una app web creada con Angular y diferentes librerias que se mencionan al final.
+La app tiene como finalidad ser un gestor y administrador de datos para un instituto de ingles.
+La persona puede logearse a la misma ingresando su correo y password correspondiente en el login. Existes 2 roles que habilitan diferentes funciones dentro de la app segun con cual se haya logeado. El rol de admin permite acceso total a la aplicacion es decir que puede :
+-Ver la lista de usuarios, agregar uno nuevo, editar ,borrar y ver detalles.
+-Ver la lista de alumnos, agregar uno nuevo, editar ,borrar , ver detalles y gestionar desde alli los cursos a los cuales esta inscripto.
+-Ver la lista de cursos , agregar uno nuevo, editar ,borrar , ver detalles y gestionar desde alli los alumnos los cuales esta inscripto a cada uno.
+-Realizar la inscripcion o dar la baja de un alumno a un curso determinado.
 
-## Code scaffolding
+El rol de usuario tiene los siguientes permisos:
+-Solo tiene acesso de lectura a la lista de usuarios,alumnos,cursos sin poder agregar,eliminar,editar o ver datos sencibles de cada lista.
+-Realizar la inscripcion o dar la baja de un alumno a un curso determinado.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Requerimientos
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1- Para el correcto funcionamiento es necesario instalar las dependencias figuradas en el package.json
+```
+- npm i
+```
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Modo de ejecucion
+En la consola escribir el siguiente comando :
+```
+- ng serve -o
+- npx json-server db.json --watch
+```
 
-## Running end-to-end tests
+NOTA: El segundo comando es para levantar la base de datos (libreria json watch server) y poder ingresar tanto a los datos del usarios como toda la informacion de la app.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
+## Usuarios de demostracion para logearse
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+ Rol admin :
+ -User : lucasaspe@gmail.com   
+ -Pass :test
+
+ Rol usuario:
+-User : ptobalda@gmail.com  
+-Pass :123456
+
+## Demo de navegabilidad
+
+```
+https://www.youtube.com/watch?v=knOtX4YymCY
+
+```
+
+
+## Creado con :
+
+* [Angular] https://angular.io/
+* [AngularMaterial] https://material.angular.io/
+* [Sweet-Alert2] https://sweetalert2.github.io/
+* [Ngrx] https://ngrx.io/
+* [RxJS] https://rxjs.dev/
+* [TypeScript] https://www.typescriptlang.org/
+
+
+## Autor
+
+- [LucasAspee]
